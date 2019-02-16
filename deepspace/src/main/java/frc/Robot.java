@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  private DriveTrain driveTrain;
+  private static DriveTrain driveTrain;
   public static Elevator elevator;
   private OI m_oi;
 
@@ -40,7 +40,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     m_oi = new OI();
     driveTrain=new DriveTrain(m_oi);
-    elevator=new Elevator();
+    elevator=new Elevator(m_oi);
+
+    m_oi.Init();
 
   }
 
@@ -95,6 +97,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    driveTrain.periodic();
+    System.out.println(elevator.getElevatorHeight());
+    //elevator.setPower(0.7);
+    elevator.periodic();
   }
 
   /**
@@ -102,5 +108,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+  public static DriveTrain getDriveTrain() {
+    return driveTrain;
   }
 }

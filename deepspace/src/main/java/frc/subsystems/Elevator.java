@@ -10,8 +10,11 @@ package frc.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.OI;
 import frc.command.MoveElevator;
 import frc.robot.ElevatorPosition;
 
@@ -23,16 +26,29 @@ public class Elevator extends Subsystem {
   private Double desiredHeight;
   private WPI_TalonSRX elevatorMotor;
   private DigitalInput bottonLimitSwitch = new DigitalInput(1);
-  private Encoder encoder;;
+  private Encoder encoder;
+  private OI oi;
  
 
-  public Elevator(){
+  public Elevator(OI oi){
     
-    elevatorMotor = new WPI_TalonSRX(1);
-    encoder = new Encoder(1, 2, false, EncodingType.k4X);
-    
+    elevatorMotor = new WPI_TalonSRX(23);
+    //encoder = new Encoder(1, 2, false, EncodingType.k4X);
+    this.oi = oi;
     
   }
+
+  public void periodic() {
+    if (oi.getBButton()) {
+      setPower(.7);
+    } else if (oi.getAButton()) {
+      setPower(-.7);
+    } else {
+      setPower(0);
+    }
+  }
+
+
   @Override
   public void initDefaultCommand() {
     desiredHeight=(ElevatorPosition.HATCHROCKETANDCARGOSHIP).getPosition();
@@ -57,10 +73,12 @@ public class Elevator extends Subsystem {
 			return power; 
 		}
 	}
-  private double getElevatorHeight(){
+  public double getElevatorHeight(){
     
+    return -elevatorMotor.getSensorCollection().getQuadraturePosition();
 
-    return 0;//elevatorMotor.get * (2 * Math.PI) / 21;
+    //return 0;
+        //elevatorMotor.get * (2 * Math.PI) / 21;
         // Pulley has a 1 inch radius and 2 pi circumfrence
         // The gearbox has a ratio of 21:1
         // Therefore to go from encoders to elevator height we multiply by 2pi and
@@ -71,11 +89,12 @@ public class Elevator extends Subsystem {
   public void setPower(double power) {
     double difference;
 		power = safetyCheck(power);
-    difference=getElevatorHeight()-desiredHeight;
-    if(Math.abs(difference-1.0) <= 0.000001)
-      elevatorMotor.set(0);
-    else
-		  elevatorMotor.set(power);
+   // difference=getElevatorHeight()-desiredHeight;
+    // if(Math.abs(difference-1.0) <= 0.000001)
+    //   elevatorMotor.set(0);
+    // else
+    //   elevatorMotor.set(power);
+    elevatorMotor.set(power);
 	}
 }
 

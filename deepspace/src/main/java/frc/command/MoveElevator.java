@@ -33,6 +33,7 @@ public class MoveElevator extends Command {
   protected void execute() {
     elevator.setElevatiorHeight(position);
     elevator.setPower(1);
+    System.out.println("Setting elevator height");
 
   }
 

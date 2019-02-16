@@ -7,6 +7,7 @@
 
 package frc;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -30,10 +31,12 @@ import frc.robot.ElevatorPosition;
 public class OI {
     
   private  XboxController gamePad1, gamePad2;
+  private Joystick controller;
   private JoystickButton buttonY1,buttonX1,buttonA1,buttonB1,buttonLB1,buttonBack1,buttonRB1,buttonStart1,buttonClickLeft1,buttonClickRight1,buttonLT1,buttonRT1,
   buttonY2,buttonX2,buttonA2,buttonB2,buttonLB2,buttonBack2,buttonRB2,buttonStart2,buttonClickLeft2,buttonClickRight2,buttonLT2,buttonRT2;
     
   public OI(){
+    controller = new Joystick(0);
     gamePad1 = new XboxController(0);
     gamePad2 = new XboxController(1);
     buttonA1 = new JoystickButton(gamePad1,1);//Run ingestor inward
@@ -49,8 +52,8 @@ public class OI {
     buttonLT1 = new JoystickButton(gamePad1,11);
     buttonRT1 = new JoystickButton(gamePad1,12);
     
-    buttonA2 = new JoystickButton(gamePad2,1);//Elevator to Level 3 (To shoot ball into cargo ship)
-    buttonB2 = new JoystickButton(gamePad2,2);//Elevator to Level 1 (Bottom hatch for rocket and cargo)
+    buttonA2 = new JoystickButton(controller,1);//Elevator to Level 3 (To shoot ball into cargo ship)
+    buttonB2 = new JoystickButton(controller,2);//Elevator to Level 1 (Bottom hatch for rocket and cargo)
     buttonX2 = new JoystickButton(gamePad2,3);//Elevator to Level 2 (Bottom rocket port)
     buttonY2 = new JoystickButton(gamePad2,4);//Climb
     buttonLB2 = new JoystickButton(gamePad2,5);//Elevator to Level 4 (Middle rocket hatch)
@@ -63,7 +66,6 @@ public class OI {
     buttonRT2 = new JoystickButton(gamePad2,12);//Elevator to Level 7 (Top rocket port)
     
 
-
   }
   public XboxController getGamePad1() {
 		return gamePad1;
@@ -71,7 +73,18 @@ public class OI {
   public XboxController getGamePad2() {
 		return gamePad2;
   }
+
+  public Joystick getController() {
+    return controller;
+  }
   
+  public boolean getAButton() {
+    return buttonA2.get();
+  }
+  public boolean getBButton() {
+    return buttonB2.get();
+  }
+
   public void Init() {
     /*buttonA1.whenPressed(new RunIngestor(this, -0.5)); //run ingestor inward
     buttonB1.whenPressed(new RunIngestor(this, 0.5)); //run ingestor outward
@@ -83,7 +96,7 @@ public class OI {
     buttonRB1.whenPressed(new DeployBall(this)); //shoot ball
     buttonBack1.whileHeld(new AutonOverride(this));
     */
-    buttonA2.whenPressed(new MoveElevator(ElevatorPosition.BALLCARGOSHIP)); //ballCargoShip
+    buttonA2.whenPressed(new MoveElevator(ElevatorPosition.test)); //ballCargoShip
     buttonX2.whenPressed(new MoveElevator(ElevatorPosition.HATCHROCKETANDCARGOSHIP)); //hatchRocketandCargoShip
     buttonB2.whenPressed(new MoveElevator(ElevatorPosition.BALLLOWROCKETSHIP)); //ballLowRocketShip
     buttonLB2.whenPressed(new MoveElevator(ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
