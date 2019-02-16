@@ -8,21 +8,32 @@
 package frc.command;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.ElevatorPosition;
+import frc.robot.Robot;
+import frc.subsystems.Elevator;
 
 public class MoveElevator extends Command {
-  public MoveElevator() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  private Elevator elevator;
+  private ElevatorPosition position;
+  
+  public MoveElevator(ElevatorPosition position) {
+   this.elevator=Robot.elevator;
+   requires(elevator);
+   this.position=position;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    elevator.stop();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    elevator.setElevatiorHeight(position);
+    elevator.setPower(1);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

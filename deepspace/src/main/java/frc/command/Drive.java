@@ -10,18 +10,20 @@ package frc.command;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.GenericHID;
-import frc.subsytems.DriveTrain;
+import frc.robot.OI;
+import frc.subsystems.DriveTrain;
 
 public class Drive extends Command {
   private DriveTrain driveTrain;
   private XboxController gamePad;
+  private OI m_oi;
 
-  public Drive(DriveTrain driveTrain,XboxController gamePad) {
+
+  public Drive(OI m_oi,DriveTrain driveTrain) {
+    this.m_oi=m_oi;
     this.driveTrain=driveTrain;
-    this.gamePad = gamePad;
+    gamePad=m_oi.getGamePad();
     requires(driveTrain);
-    
-    
     }
 
   // Called just before this Command runs the first time
