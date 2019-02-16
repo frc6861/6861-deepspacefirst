@@ -22,7 +22,7 @@ public class Drive extends Command {
   public Drive(OI m_oi,DriveTrain driveTrain) {
     this.m_oi=m_oi;
     this.driveTrain=driveTrain;
-    gamePad=m_oi.getGamePad();
+    gamePad=m_oi.getGamePad1();
     requires(driveTrain);
     }
 
