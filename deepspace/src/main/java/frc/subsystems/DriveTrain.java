@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.command.Drive;
-import frc.robot.OI;
+import frc.OI;
 
 public class DriveTrain extends Subsystem {
   private WPI_TalonSRX leftFront; 

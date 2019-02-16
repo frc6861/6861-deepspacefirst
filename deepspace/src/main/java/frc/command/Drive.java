@@ -10,7 +10,7 @@ package frc.command;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.GenericHID;
-import frc.robot.OI;
+import frc.OI;
 import frc.subsystems.DriveTrain;
 
 public class Drive extends Command {

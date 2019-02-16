@@ -9,7 +9,7 @@ package frc.command;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.ElevatorPosition;
-import frc.robot.Robot;
+import frc.Robot;
 import frc.subsystems.Elevator;
 
 public class MoveElevator extends Command {

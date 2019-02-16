@@ -5,11 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
-import edu.wpi.first.wpilibj.DigitalInput;
+package frc;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.command.Drive;
+
 import frc.command.MoveElevator;
 /*import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.AutonOverride;
@@ -22,6 +22,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.commands.AntiClockwiseTurn;
 import frc.robot.commands.ClockwiseTurn;*/
+import frc.robot.ElevatorPosition;
 
 /**
  * Add your docs here.
