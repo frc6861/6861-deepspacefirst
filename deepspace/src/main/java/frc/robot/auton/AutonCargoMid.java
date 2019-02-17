@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.auton;
+package frc.robot.auton;
 
 /**
  * Add your docs here.

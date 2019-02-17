@@ -5,13 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.subsystems.DriveTrain;
-import frc.subsystems.Elevator;
+import frc.robot.subsystems.DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,8 +25,7 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  private static DriveTrain driveTrain;
-  public static Elevator elevator;
+  private DriveTrain driveTrain;
   private OI m_oi;
 
   /**
@@ -35,14 +34,16 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    m_oi = new OI();
+    m_oi.Init();
+    driveTrain=new DriveTrain(m_oi);
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    m_oi = new OI();
-    driveTrain=new DriveTrain(m_oi);
-    elevator=new Elevator(m_oi);
+    
+    
 
-    m_oi.Init();
+    
 
   }
 
@@ -81,6 +82,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    Scheduler.getInstance().run();
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
@@ -97,10 +99,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    driveTrain.periodic();
-    System.out.println(elevator.getElevatorHeight());
-    //elevator.setPower(0.7);
-    elevator.periodic();
+    Scheduler.getInstance().run();
   }
 
   /**
@@ -110,7 +109,13 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
   }
 
-  public static DriveTrain getDriveTrain() {
-    return driveTrain;
+  
+  @Override
+  public void teleopInit() {
+    // This makes sure that the autonomous stops running when
+    // teleop starts running. If you want the autonomous to
+    // continue until interrupted by another command, remove
+    // this line or comment it out.
+    
   }
 }

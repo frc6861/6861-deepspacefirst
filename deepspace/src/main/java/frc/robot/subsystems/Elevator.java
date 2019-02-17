@@ -5,17 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.subsystems;
+package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.OI;
-import frc.command.MoveElevator;
+import frc.robot.OI;
+import frc.robot.commands.MoveElevator;
 import frc.robot.ElevatorPosition;
 
 /**
@@ -52,7 +49,7 @@ public class Elevator extends Subsystem {
   @Override
   public void initDefaultCommand() {
     desiredHeight=(ElevatorPosition.HATCHROCKETANDCARGOSHIP).getPosition();
-    setDefaultCommand(new MoveElevator(ElevatorPosition.HATCHROCKETANDCARGOSHIP));
+    //setDefaultCommand(new MoveElevator(this,ElevatorPosition.HATCHROCKETANDCARGOSHIP));
     
   }
   public void setElevatiorHeight(ElevatorPosition position){

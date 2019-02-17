@@ -5,37 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.command;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.ElevatorPosition;
-import frc.Robot;
-import frc.subsystems.Elevator;
+import frc.robot.OI;
+import frc.robot.subsystems.DriveTrain;
 
-public class MoveElevator extends Command {
-  private Elevator elevator;
-  private ElevatorPosition position;
-  
-  public MoveElevator(ElevatorPosition position) {
-   this.elevator=Robot.elevator;
-   requires(elevator);
-   this.position=position;
-  }
+public class Drive extends Command {
+  private DriveTrain driveTrain;
+  private OI oi;
+
+
+  public Drive(OI m_oi,DriveTrain driveTrain) {
+    this.oi=m_oi;
+    this.driveTrain=driveTrain;
+     requires(driveTrain);
+    }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    elevator.stop();
+    System.out.print("Initializing Drive Command");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    elevator.setElevatiorHeight(position);
-    elevator.setPower(1);
-    System.out.println("Setting elevator height");
-
+    driveTrain.setMecanumDriveCommand(oi.getGamePad1().getRawAxis(0), -0.75*oi.getGamePad1().getRawAxis(1), 0.5*oi.getGamePad1().getRawAxis(4), 0);
+    System.out.println("Driving!!!");
   }
+
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
