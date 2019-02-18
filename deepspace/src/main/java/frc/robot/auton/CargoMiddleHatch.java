@@ -5,44 +5,38 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.auton;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 import frc.robot.subsystems.DriveTrain;
 
-public class Drive extends Command {
+/**
+ * Add your docs here.
+ */
+public class CargoMiddleHatch extends TimedCommand {
   private DriveTrain driveTrain;
-  private OI oi;
 
+  public CargoMiddleHatch(double timeout,DriveTrain driveTrain) {
+    super(timeout);
+   	this.driveTrain=driveTrain;
+    requires(driveTrain);
 
-  public Drive(OI m_oi,DriveTrain driveTrain) {
-    this.oi=m_oi;
-    this.driveTrain=driveTrain;
-     requires(driveTrain);
-    }
+  }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.print("Initializing Drive Command");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    driveTrain.setMecanumDriveCommand(oi.getGamePad1().getRawAxis(0), -0.75*oi.getGamePad1().getRawAxis(1), 0.5*oi.getGamePad1().getRawAxis(4), 0);
-    //System.out.println("Driving!!!");
+    System.out.println("Auton");
+    driveTrain.setMecanumDriveCommand(0, -0.25, 0, 0);
+
   }
 
-
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
-
-  // Called once after isFinished returns true
+  // Called once after timeout
   @Override
   protected void end() {
   }
@@ -51,5 +45,12 @@ public class Drive extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+  }
+  protected boolean isFinished() {
+    return isTimedOut();
+    // boolean flag=(!driveTrain.getM_oi().getLeftProximitySensor().get() && !driveTrain.getM_oi().getRightProximitySensor().get());
+    // if(!flag)
+    //     System.out.println("*******************************************"+flag);
+    // return flag;
   }
 }

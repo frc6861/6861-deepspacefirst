@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.OI;
 import frc.robot.commands.MoveElevator;
@@ -35,7 +36,7 @@ public class Elevator extends Subsystem {
     
   }
 
-  public void periodic() {
+  public void manualElevatorMove() {
     if (oi.getBButton()) {
       setPower(.7);
     } else if (oi.getAButton()) {
@@ -48,12 +49,16 @@ public class Elevator extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    desiredHeight=(ElevatorPosition.HATCHROCKETANDCARGOSHIP).getPosition();
-    //setDefaultCommand(new MoveElevator(this,ElevatorPosition.HATCHROCKETANDCARGOSHIP));
+    // if(bottonLimitSwitch.get())
+    //   setPower(-1.0);
+    // else
+      setPower(0);
     
+
   }
-  public void setElevatiorHeight(ElevatorPosition position){
-    desiredHeight=position.getPosition();
+  public void setElevatiorHeight(JoystickButton button){
+    System.out.println("**************************88"+button.getName());
+//desiredHeight=position.getPosition();
   }
   public void stop() {
 		setPower(0.0);

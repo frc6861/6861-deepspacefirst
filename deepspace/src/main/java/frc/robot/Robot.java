@@ -8,9 +8,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.auton.CargoMiddleHatch;
 import frc.robot.subsystems.DriveTrain;
 
 /**
@@ -27,6 +29,8 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private DriveTrain driveTrain;
   private OI m_oi;
+  private Command m_autonomousCommand;
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -37,9 +41,10 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_oi.Init();
     driveTrain=new DriveTrain(m_oi);
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
+    SmartDashboard.putData("Auto mode", m_chooser);
+		m_chooser.setDefaultOption("Auton Cargo Mid","xxx");
+    //m_chooser.addOption("My Auto", new CargoMiddleHatch(2,driveTrain));
+    //SmartDashboard.putData("Auto choices", m_chooser);
     
     
 
@@ -72,26 +77,38 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    Scheduler.getInstance().removeAll();
     m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
+    m_autoSelected = SmartDashboard.getString("Auto Selector", "Cargo Mid Hatch");
+    switch (m_autoSelected) {
+      case kCustomAuto:
+        // Put custom auto code here
+       // new CargoMiddleHatch(2,driveTrain);
+        break;
+      case kDefaultAuto:
+      default:
+        // Put default auto code here
+        
+        m_autonomousCommand =new CargoMiddleHatch(2,driveTrain);
+        break;
+    }
+    if (m_autonomousCommand != null) {
+      System.out.println("Auto trigger");
+			m_autonomousCommand.start();
+		}
+    
   }
 
+  
   /**
    * This function is called periodically during autonomous.
    */
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+
+    
+
   }
 
   /**
@@ -116,6 +133,12 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    
+    Scheduler.getInstance().removeAll();
+   
   }
+  @Override
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
+	}
+
 }

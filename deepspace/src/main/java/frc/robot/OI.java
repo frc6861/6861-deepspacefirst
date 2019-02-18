@@ -39,7 +39,7 @@ public class OI {
     
   public OI(){
     elevator=new Elevator(this);
-    System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&777"+elevator);
+    
     gamePad1 = new XboxController(0);
     gamePad2 = new XboxController(1);
     buttonA1 = new JoystickButton(gamePad1,1);//Run ingestor inward
@@ -99,8 +99,8 @@ public class OI {
     buttonRB1.whenPressed(new DeployBall(this)); //shoot ball
     buttonBack1.whileHeld(new AutonOverride(this));
     */
-    buttonA2.whenPressed(new MoveElevator(elevator,ElevatorPosition.BALLCARGOSHIP)); //ballCargoShip
-    // buttonX2.whenPressed(new MoveElevator(ElevatorPosition.HATCHROCKETANDCARGOSHIP)); //hatchRocketandCargoShip
+    buttonA2.whenPressed(new MoveElevator(elevator,"1")); //ballCargoShip
+    buttonX2.whenPressed(new MoveElevator(elevator,"2")); //hatchRocketandCargoShip
     // buttonB2.whenPressed(new MoveElevator(ElevatorPosition.BALLLOWROCKETSHIP)); //ballLowRocketShip
     // buttonLB2.whenPressed(new MoveElevator(ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
     // buttonLT2.whenPressed(new MoveElevator(ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
@@ -109,6 +109,7 @@ public class OI {
     //buttonBack2.whenPressed(new AutonOverride(this));
     //buttonY2.whileHeld(new Climb(this));*/
  }
+ 
  
  
 }

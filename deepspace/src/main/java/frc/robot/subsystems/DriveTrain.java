@@ -39,7 +39,7 @@ public class DriveTrain extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    System.out.println("DriveTrain default command");
+    //System.out.println("DriveTrain default command");
     setDefaultCommand(new Drive(m_oi,this));
   }
   public void setMecanumDriveCommand(double ySpeed, double xSpeed, double zRotation, double gyroAngle) {

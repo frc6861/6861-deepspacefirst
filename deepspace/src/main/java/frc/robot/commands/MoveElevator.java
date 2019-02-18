@@ -7,19 +7,19 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.ElevatorPosition;
 import frc.robot.subsystems.Elevator;
 
 public class MoveElevator extends Command {
   private Elevator elevator;
-  private ElevatorPosition position;
-  
-  public MoveElevator(Elevator elevator,ElevatorPosition position) {
-   System.out.println("*****************************8"+elevator);
+  private String button;
+    
+  public MoveElevator(Elevator elevator, String buttonNumber) {
    this.elevator=elevator;
    requires(elevator);
-   this.position=position;
+   this.button=buttonNumber;
+   
   }
 
   // Called just before this Command runs the first time
@@ -31,9 +31,13 @@ public class MoveElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    elevator.setElevatiorHeight(position);
-   // elevator.setPower(1);
-    System.out.println("Setting elevator height");
+    if(button.equals("1"))
+      elevator.setPower(-0.1);
+    else if(button.equals("2"))
+      elevator.setPower(0.1);
+    else
+      elevator.setPower(0);
+    
 
   }
 
