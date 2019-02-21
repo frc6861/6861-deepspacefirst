@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.auton.CargoMiddleHatch;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Ingestor;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,8 +31,11 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private DriveTrain driveTrain;
-  private OI m_oi;
+  public static OI m_oi = new OI();
   private Command m_autonomousCommand;
+  public static Elevator elevator = new Elevator(m_oi);
+  public static Ingestor ingestor =new Ingestor();
+  
 
 
   /**
@@ -41,6 +47,8 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_oi.Init();
     driveTrain=new DriveTrain(m_oi);
+    elevator=new Elevator(m_oi);
+
     SmartDashboard.putData("Auto mode", m_chooser);
 		m_chooser.setDefaultOption("Auton Cargo Mid","xxx");
     //m_chooser.addOption("My Auto", new CargoMiddleHatch(2,driveTrain));
@@ -79,17 +87,17 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     Scheduler.getInstance().removeAll();
     m_autoSelected = m_chooser.getSelected();
-    m_autoSelected = SmartDashboard.getString("Auto Selector", "Cargo Mid Hatch");
+    m_autoSelected = SmartDashboard.getString("Auto Selector", "CargoMidHatch");
     switch (m_autoSelected) {
-      case kCustomAuto:
+      case "CargoMidHatch":
         // Put custom auto code here
-       // new CargoMiddleHatch(2,driveTrain);
+        m_autonomousCommand =new CargoMiddleHatch(2,driveTrain);
         break;
       case kDefaultAuto:
       default:
         // Put default auto code here
         
-        m_autonomousCommand =new CargoMiddleHatch(2,driveTrain);
+        
         break;
     }
     if (m_autonomousCommand != null) {
@@ -133,12 +141,17 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    Scheduler.getInstance().removeAll();
+    //ingestor.retract();
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
+
    
   }
   @Override
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
+    Scheduler.getInstance().run();
+    //ingestor.retract();
 	}
 
 }

@@ -10,9 +10,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+import frc.robot.commands.UpIngestor;
+import frc.robot.commands.DownIngestor;
+//import frc.robot.commands.ExtendSolFront;
 import frc.robot.commands.MoveElevator;
-import frc.robot.subsystems.Elevator;
+//import frc.robot.commands.RetractSolFront;
+import frc.robot.commands.RunIngestor;
 /*import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.AutonOverride;
 import frc.robot.commands.Climb;
@@ -33,12 +36,10 @@ public class OI {
     
   private  XboxController gamePad1, gamePad2;
   private Joystick controller;
-  private Elevator elevator;
   private JoystickButton buttonY1,buttonX1,buttonA1,buttonB1,buttonLB1,buttonBack1,buttonRB1,buttonStart1,buttonClickLeft1,buttonClickRight1,buttonLT1,buttonRT1,
   buttonY2,buttonX2,buttonA2,buttonB2,buttonLB2,buttonBack2,buttonRB2,buttonStart2,buttonClickLeft2,buttonClickRight2,buttonLT2,buttonRT2;
     
   public OI(){
-    elevator=new Elevator(this);
     
     gamePad1 = new XboxController(0);
     gamePad2 = new XboxController(1);
@@ -89,19 +90,19 @@ public class OI {
   }
 
   public void Init() {
-    /*buttonA1.whenPressed(new RunIngestor(this, -0.5)); //run ingestor inward
-    buttonB1.whenPressed(new RunIngestor(this, 0.5)); //run ingestor outward
-    buttonX1.whenPressed(new LiftIngestor(this, 0.5)); //put ingestor up to pick up hatches
-    buttonY1.whenPressed(new LiftIngestor(this, -0.5)); //put ingestor back down
-    buttonClickLeft1.whenPressed(new AntiClockwiseTurn(0.26, driveTrain)); //rotate left 90 deg
-    buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg
-    buttonLB1.whenPressed(new DeployHatch(this)); //deploy hatch
-    buttonRB1.whenPressed(new DeployBall(this)); //shoot ball
-    buttonBack1.whileHeld(new AutonOverride(this));
-    */
-    buttonA2.whenPressed(new MoveElevator(elevator,"1")); //ballCargoShip
-    buttonX2.whenPressed(new MoveElevator(elevator,"2")); //hatchRocketandCargoShip
-    // buttonB2.whenPressed(new MoveElevator(ElevatorPosition.BALLLOWROCKETSHIP)); //ballLowRocketShip
+    buttonA1.whenPressed(new RunIngestor(-0.5)); //run ingestor inward
+    buttonB1.whenPressed(new RunIngestor(0.5)); //run ingestor outward
+    buttonX1.whenPressed(new UpIngestor(0.5)); // put ingestor up to pick up hatches
+    buttonY1.whenPressed(new DownIngestor(-0.5)); //put ingestor back down
+    /*buttonClickLeft1.whenPressed(new AntiClockwiseTurn(0.26, driveTrain)); //rotate left 90 deg
+    buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
+    //buttonLB1.whenPressed(new ExtendSolFront()); //deploy hatch
+    //buttonRB1.whenPressed(new RetractSolFront()); //shoot ball    */
+    //buttonBack1.whileHeld(new AutonOverride(this));
+
+    buttonClickLeft2.whileHeld(new MoveElevator(this));//ballCargoShip
+    buttonClickRight2.whileHeld(new MoveElevator(this)); //hatchRocketandCargoShip
+    //buttonB2.whenPressed(new MoveElevator(elevator,"3")); //ballLowRocketShip
     // buttonLB2.whenPressed(new MoveElevator(ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
     // buttonLT2.whenPressed(new MoveElevator(ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
     // buttonRT2.whenPressed(new MoveElevator(ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
@@ -109,7 +110,12 @@ public class OI {
     //buttonBack2.whenPressed(new AutonOverride(this));
     //buttonY2.whileHeld(new Climb(this));*/
  }
- 
+ public boolean getButtonClickLeft2() {
+   return buttonClickLeft2.get();
+ }
+ public boolean getButtonClickRight2() {
+  return buttonClickRight2.get();
+}
  
  
 }

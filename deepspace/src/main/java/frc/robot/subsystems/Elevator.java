@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.OI;
@@ -23,7 +24,8 @@ public class Elevator extends Subsystem {
   
   private Double desiredHeight;
   private WPI_TalonSRX elevatorMotor;
-  private DigitalInput bottonLimitSwitch = new DigitalInput(1);
+  //private DigitalInput bottonLimitSwitch = new DigitalInput(1);
+  //private DigitalInput topLimitSwitch = new DigitalInput(0);
   private Encoder encoder;
   private OI oi;
  
@@ -32,49 +34,43 @@ public class Elevator extends Subsystem {
     
     elevatorMotor = new WPI_TalonSRX(23);
     //encoder = new Encoder(1, 2, false, EncodingType.k4X);
+    //encoder.reset();
     this.oi = oi;
+    //setPower(0.0);
     
   }
 
-  public void manualElevatorMove() {
-    if (oi.getBButton()) {
-      setPower(.7);
-    } else if (oi.getAButton()) {
-      setPower(-.7);
-    } else {
-      setPower(0);
-    }
-  }
-
+  
 
   @Override
   public void initDefaultCommand() {
-    // if(bottonLimitSwitch.get())
-    //   setPower(-1.0);
-    // else
+     /*if(bottonLimitSwitch.get())
+       setPower(-1.0);
+     else
       setPower(0);
-    
+    */
 
   }
-  public void setElevatiorHeight(JoystickButton button){
-    System.out.println("**************************88"+button.getName());
-//desiredHeight=position.getPosition();
+  public void setElevatiorHeight(ElevatorPosition position){
+    desiredHeight=position.getPosition();
+    //setPowerWithEncoders(0.2);
   }
   public void stop() {
-		setPower(0.0);
+    System.out.println("Elevator.java : stop method power=0");
+		//setPower(0.0);
   }
 
-  private double safetyCheck(double power) {
+  /*private double safetyCheck(double power) {
 		power = Math.min(1.0, power);
 		power = Math.max(-1.0, power);
 		
-		 if((!bottonLimitSwitch.get() && power > 0)) {
+		 if((!topLimitSwitch.get() && power > 0) || (!bottonLimitSwitch.get() && power < 0)) {
 		    return 0.0; 
 		 } 
 		else { 
 			return power; 
 		}
-	}
+	}*/
   public double getElevatorHeight(){
     
     return -elevatorMotor.getSensorCollection().getQuadraturePosition();
@@ -88,16 +84,26 @@ public class Elevator extends Subsystem {
 
   }
 
-  public void setPower(double power) {
+  /* void setPower(double power) {
     double difference;
 		power = safetyCheck(power);
-   // difference=getElevatorHeight()-desiredHeight;
-    // if(Math.abs(difference-1.0) <= 0.000001)
-    //   elevatorMotor.set(0);
-    // else
-    //   elevatorMotor.set(power);
+    difference=getElevatorHeight()-desiredHeight;
+     if(Math.abs(difference-1.0) <= 0.000001)
+       elevatorMotor.set(0);
+     else
+       elevatorMotor.set(power);
     elevatorMotor.set(power);
-	}
+  }*/
+  /*public void setPowerWithEncoders(double power) {
+     double difference;
+		 power = safetyCheck(power);
+     difference=encoder.getDistance()-desiredHeight;
+     if(Math.abs(difference-1.0) <= 0.000001)
+        elevatorMotor.set(0);
+     else
+        elevatorMotor.set(power);
+     elevatorMotor.set(power);
+	}*/
 }
 
 
