@@ -8,11 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.subsystems.DriveTrain;
 
 public class AutonOverRide extends Command {
-  public AutonOverRide() {
+  private DriveTrain driveTrain;
+  private OI oi;
+
+  public AutonOverRide(OI oi) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    this.oi=oi;
+    requires(driveTrain);
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +30,7 @@ public class AutonOverRide extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

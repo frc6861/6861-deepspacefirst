@@ -107,7 +107,7 @@ public class OI {
     // buttonLT2.whenPressed(new MoveElevator(ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
     // buttonRT2.whenPressed(new MoveElevator(ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
     // buttonRB2.whenPressed(new MoveElevator(ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip
-    //buttonBack2.whenPressed(new AutonOverride(this));
+    buttonBack2.whenPressed(new AutonOverride(this));
     //buttonY2.whileHeld(new Climb(this));*/
  }
  public boolean getButtonClickLeft2() {
