@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.UpIngestor;
+import frc.robot.commands.AutonOverRide;
 import frc.robot.commands.DownIngestor;
 //import frc.robot.commands.ExtendSolFront;
 import frc.robot.commands.MoveElevator;
@@ -107,7 +108,7 @@ public class OI {
     // buttonLT2.whenPressed(new MoveElevator(ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
     // buttonRT2.whenPressed(new MoveElevator(ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
     // buttonRB2.whenPressed(new MoveElevator(ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip
-    buttonBack2.whenPressed(new AutonOverride(this));
+    buttonBack2.whenPressed(new AutonOverRide(this));
     //buttonY2.whileHeld(new Climb(this));*/
  }
  public boolean getButtonClickLeft2() {
