@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -35,8 +36,10 @@ public class Elevator extends Subsystem {
     public Elevator(OI oi) {
         //encoder = new FeedbackDevice<QuadEncoder>();
         elevatorMotor = new WPI_TalonSRX(23);
-        //elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-        //elevatorMotor.setSensorPhase(true);
+        elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);//NOTE: Encoder returns a value reverse of what it should be! Put a - before
+        elevatorMotor.setSensorPhase(true);//                                   any readings from it!
+        elevatorMotor.setInverted(false);
+        
         //topLimitSwitch = new DigitalInput(0);
         //bottomLimitSwitch = new DigitalInput(1);
         // encoder = new Encoder(1, 2, false, EncodingType.k4X);
@@ -59,8 +62,9 @@ public class Elevator extends Subsystem {
 
     }
 
-    public void setElevatiorHeight(ElevatorPosition position) {
-        desiredHeight = position.getPosition();
+    public void setElevatiorHeight(double position) {
+        elevatorMotor.set(ControlMode.Position, position);
+        //desiredHeight = position.getPosition();
         // setPowerWithEncoders(0.2);
     }
 

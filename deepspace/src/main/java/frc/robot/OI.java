@@ -98,17 +98,17 @@ public class OI {
     buttonY1.whenPressed(new DownIngestor(-0.5)); //put ingestor back down
     /*buttonClickLeft1.whenPressed(new AntiClockwiseTurn(0.26, driveTrain)); //rotate left 90 deg
     buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
-    //buttonLB1.whenPressed(new ExtendSolFront()); //deploy hatch
+    //buttonLB1.whenPressed(new ExtendSolFront()); //deploy hatch 
     //buttonRB1.whenPressed(new RetractSolFront()); //shoot ball    */
     //buttonBack1.whileHeld(new AutonOverride(this));
 
     buttonClickLeft2.whileHeld(new MoveElevator(this));//ballCargoShip
     buttonClickRight2.whileHeld(new MoveElevator(this)); //hatchRocketandCargoShip
     //buttonB2.whenPressed(new MoveElevator(elevator,"3")); //ballLowRocketShip
-    // buttonLB2.whenPressed(new MoveElevator(ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
-    // buttonLT2.whenPressed(new MoveElevator(ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
-    // buttonRT2.whenPressed(new MoveElevator(ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
-    // buttonRB2.whenPressed(new MoveElevator(ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip
+    // buttonLB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
+    // buttonLT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
+    // buttonRT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
+    // buttonRB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip
     buttonBack2.whenPressed(new AutonOverRide(this));
     //buttonY2.whileHeld(new Climb(this));*/
  }

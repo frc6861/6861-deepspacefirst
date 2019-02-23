@@ -44,14 +44,12 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        topLimitSwitch = new DigitalInput(0);
-        bottomLimitSwitch = new DigitalInput(1);
+        topLimitSwitch = new DigitalInput(1);
+        bottomLimitSwitch = new DigitalInput(0);
         m_oi = new OI();
         m_oi.Init();
         driveTrain = new DriveTrain(m_oi);
         elevator = new Elevator(m_oi);
-
-        
 
         SmartDashboard.putData("Auto mode", m_chooser);
         m_chooser.setDefaultOption("Auton Cargo Mid", "xxx");
@@ -63,7 +61,6 @@ public class Robot extends TimedRobot {
     /**
      * @return the bottomLimitSwitch
      */
-    
 
     /**
      * This function is called every robot packet, no matter the mode. Use this for
@@ -76,7 +73,11 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
-        if(m_oi.getButtonBack2()){
+        System.out.println("ENCODER: " + -elevator.elevatorMotor.getSensorCollection().getQuadraturePosition());
+        /*if (!bottomLimitSwitch.get()) {
+            elevator.elevatorMotor.getSensorCollection().setQuadraturePosition(0, 0);
+        }*/
+        if (m_oi.getButtonBack2()) {
             m_autonomousCommand.cancel();
         }
     }
@@ -132,11 +133,13 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        
-        //System.out.println("SWITCHES: " + topLimitSwitch.get() + "  " + bottomLimitSwitch.get());
-        //if((!topLimitSwitch.get() && (elevator.getCurrentPower() > 0.0)) || (!bottomLimitSwitch.get() && (elevator.getCurrentPower() < 0.0))) {
-        //    elevator.setPower(0.0);
-        //}
+
+        // System.out.println("SWITCHES: " + topLimitSwitch.get() + " " +
+        // bottomLimitSwitch.get());
+        // if((!topLimitSwitch.get() && (elevator.getCurrentPower() > 0.0)) ||
+        // (!bottomLimitSwitch.get() && (elevator.getCurrentPower() < 0.0))) {
+        // elevator.setPower(0.0);
+        // }
     }
 
     /**
@@ -157,7 +160,6 @@ public class Robot extends TimedRobot {
             m_autonomousCommand.cancel();
         }
 
-        
     }
 
     @Override
