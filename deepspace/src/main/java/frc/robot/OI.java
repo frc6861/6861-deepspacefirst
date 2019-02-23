@@ -117,7 +117,11 @@ public class OI {
  public boolean getButtonClickRight2() {
   return buttonClickRight2.get();
 }
- 
+
+public boolean getButtonBack2() {
+    return buttonBack2.get();
+  }
+
  
 }
 

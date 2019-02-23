@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.OI;
+import frc.robot.Robot;
 import frc.robot.commands.MoveElevator;
 import frc.robot.ElevatorPosition;
 
@@ -24,8 +25,7 @@ public class Elevator extends Subsystem {
   
   private Double desiredHeight;
   private WPI_TalonSRX elevatorMotor;
-  private DigitalInput bottonLimitSwitch = new DigitalInput(1);
-  private DigitalInput topLimitSwitch = new DigitalInput(0);
+  public double currentPower;
   private OI oi;
  
 
@@ -41,7 +41,21 @@ public class Elevator extends Subsystem {
 
   
 
-  @Override
+    /**
+     * @return the currentPower
+     */
+    public double getCurrentPower() {
+        return currentPower;
+    }
+
+    /**
+     * @param currentPower the currentPower to set
+     */
+    public void setCurrentPower(double currentPower) {
+        this.currentPower = currentPower;
+    }
+
+    @Override
   public void initDefaultCommand() {
       setPower(0.0);
     
@@ -56,17 +70,18 @@ public class Elevator extends Subsystem {
 		setPower(0.0);
   }
 
-  private double safetyCheck(double power) {
+ /* private double safetyCheck(double power) {
 		power = Math.min(1.0, power);
 		power = Math.max(-1.0, power);
-		
-		 if((!topLimitSwitch.get() && power > 0) || (!bottonLimitSwitch.get() && power < 0)) {
+		System.out.println("SWITCHES: " + Robot.topLimitSwitch.get() + "  " + Robot.bottomLimitSwitch.get());
+		 if((!Robot.topLimitSwitch.get() && power > 0) || (!Robot.bottomLimitSwitch.get() && power < 0)) {
+             
 		    return 0.0; 
 		 } 
 		else { 
 			return power; 
 		}
-	}
+	}*/
   public double getElevatorHeight(){
     
     return -elevatorMotor.getSensorCollection().getQuadraturePosition();
@@ -82,12 +97,14 @@ public class Elevator extends Subsystem {
 
   public void setPower(double power) {
     // double difference;
-		// power = safetyCheck(power);
+    //power = safetyCheck(power);
     // difference=getElevatorHeight()-desiredHeight;
     //  if(Math.abs(difference-1.0) <= 0.000001)
     //    elevatorMotor.set(0);
     //  else
     //    elevatorMotor.set(power);
+    currentPower = power;
+    //System.out.println(currentPower);
     elevatorMotor.set(power);
   }
   /*public void setPowerWithEncoders(double power) {
@@ -99,7 +116,8 @@ public class Elevator extends Subsystem {
      else
         elevatorMotor.set(power);
      elevatorMotor.set(power);
-	}*/
+    }*/
+    
 }
 
 

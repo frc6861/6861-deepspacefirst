@@ -36,11 +36,11 @@ public class Ingestor extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    compressor = new Compressor(0);
+    //compressor = new Compressor(0);
     
     //solenoidW = new DoubleSolenoid(1, 2);
     //solenoidL = new DoubleSolenoid(3, 4); // TODO get channel number, rename(fine for now, can be changed later)
-    compressor.start();
+    //compressor.start();
 
   }
   // for pnuematics for wedge pickup

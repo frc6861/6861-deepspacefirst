@@ -36,16 +36,16 @@ public class MoveElevator extends Command {
   protected void execute() {
     
     if(oi.getButtonClickLeft2()){
-      System.out.println("Moving Elevator---- ButtonClickLeft2");
+      //System.out.println("Moving Elevator---- ButtonClickLeft2");
       elevator.setPower(-0.3);
     
     }
     else if(oi.getButtonClickRight2()){
-      System.out.println("Moving Elevator---- ButtonClickRight2");
+     // System.out.println("Moving Elevator---- ButtonClickRight2");
       elevator.setPower(0.3);
     }
     else{
-      System.out.println("Stopping Elevator---- No Button press detected.");
+      //System.out.println("Stopping Elevator---- No Button press detected.");
       elevator.setPower(0);
     }
       
