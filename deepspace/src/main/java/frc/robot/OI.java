@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -39,7 +40,7 @@ public class OI {
   private Joystick controller;
   private JoystickButton buttonY1,buttonX1,buttonA1,buttonB1,buttonLB1,buttonBack1,buttonRB1,buttonStart1,buttonClickLeft1,buttonClickRight1,buttonLT1,buttonRT1,
   buttonY2,buttonX2,buttonA2,buttonB2,buttonLB2,buttonBack2,buttonRB2,buttonStart2,buttonClickLeft2,buttonClickRight2,buttonLT2,buttonRT2;
-    
+  
   public OI(){
     
     gamePad1 = new XboxController(0);
@@ -117,6 +118,8 @@ public class OI {
  public boolean getButtonClickRight2() {
   return buttonClickRight2.get();
 }
+
+
 
 public boolean getButtonBack2() {
     return buttonBack2.get();

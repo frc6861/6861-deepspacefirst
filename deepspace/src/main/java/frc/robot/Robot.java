@@ -35,8 +35,8 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
     public static Elevator elevator = new Elevator(m_oi);
     public static Ingestor ingestor = new Ingestor();
-    private DigitalInput topLimitSwitch = new DigitalInput(0);
-    private DigitalInput bottomLimitSwitch = new DigitalInput(1);
+    public static DigitalInput topLimitSwitch;
+    public static DigitalInput bottomLimitSwitch;
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -44,6 +44,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+        topLimitSwitch = new DigitalInput(0);
+        bottomLimitSwitch = new DigitalInput(1);
         m_oi = new OI();
         m_oi.Init();
         driveTrain = new DriveTrain(m_oi);
@@ -130,11 +132,11 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        System.out.println(elevator.getCurrentPower());
-        System.out.println("SWITCHES: " + topLimitSwitch.get() + "  " + bottomLimitSwitch.get());
-        if((!topLimitSwitch.get() && elevator.currentPower > 0.0) || (!bottomLimitSwitch.get() && elevator.currentPower < 0.0)) {
-            elevator.setPower(0.0);
-        }
+        
+        //System.out.println("SWITCHES: " + topLimitSwitch.get() + "  " + bottomLimitSwitch.get());
+        //if((!topLimitSwitch.get() && (elevator.getCurrentPower() > 0.0)) || (!bottomLimitSwitch.get() && (elevator.getCurrentPower() < 0.0))) {
+        //    elevator.setPower(0.0);
+        //}
     }
 
     /**
