@@ -12,33 +12,21 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.OI;
 
-/**
- * Add your docs here.
- */
 public class Ingestor extends Subsystem {
   private WPI_TalonSRX leftIngestor;
     private WPI_TalonSRX rightIngestor;
-    private Compressor compressor;
-    private DoubleSolenoid solenoidW;
-    private DoubleSolenoid solenoidL;
-    private OI oi;
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+    private Compressor compressor=new Compressor(0);
+    private DoubleSolenoid solenoidW=new DoubleSolenoid(1, 2);
+    private DoubleSolenoid solenoidL=new DoubleSolenoid(3, 4);
+    
   public Ingestor(){
-    //this.oi=oi;
     leftIngestor = new WPI_TalonSRX(22);
     rightIngestor = new WPI_TalonSRX(12);
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    compressor = new Compressor(0);
-    solenoidW = new DoubleSolenoid(1, 2);
-    solenoidL = new DoubleSolenoid(3, 4); // TODO get channel number, rename(fine for now, can be changed later)
     compressor.start();
 
   }

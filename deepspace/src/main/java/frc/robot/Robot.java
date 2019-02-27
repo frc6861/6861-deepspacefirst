@@ -31,9 +31,9 @@ public class Robot extends TimedRobot {
     private String m_autoSelected;
     private final SendableChooser<String> m_chooser = new SendableChooser<>();
     private DriveTrain driveTrain;
-    public static OI m_oi = new OI();
+    private OI m_oi ;
     private Command m_autonomousCommand;
-    public static Elevator elevator = new Elevator(m_oi);
+    public static Elevator elevator = new Elevator();
     public static Ingestor ingestor = new Ingestor();
     public static DigitalInput topLimitSwitch;
     public static DigitalInput bottomLimitSwitch;
@@ -48,9 +48,7 @@ public class Robot extends TimedRobot {
         bottomLimitSwitch = new DigitalInput(0);
         m_oi = new OI();
         m_oi.Init();
-        driveTrain = new DriveTrain(m_oi);
-        elevator = new Elevator(m_oi);
-
+        elevator = new Elevator();
         SmartDashboard.putData("Auto mode", m_chooser);
         m_chooser.setDefaultOption("Auton Cargo Mid", "xxx");
         // m_chooser.addOption("My Auto", new CargoMiddleHatch(2,driveTrain));
@@ -58,9 +56,7 @@ public class Robot extends TimedRobot {
 
     }
 
-    /**
-     * @return the bottomLimitSwitch
-     */
+    
 
     /**
      * This function is called every robot packet, no matter the mode. Use this for
