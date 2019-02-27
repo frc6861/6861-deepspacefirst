@@ -13,45 +13,44 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Ingestor;
 
 public class RunIngestor extends Command {
-  private double ingestorSpeed;
-  private Ingestor ingestor;
-  public RunIngestor(double ingestorSpeed) {
-    this.ingestor = Robot.ingestor;
+    private double ingestorSpeed;
+    private Ingestor ingestor;
 
-    System.out.println("MESSAGE   " + ingestor.toString());
-    requires(ingestor);
+    public RunIngestor(double ingestorSpeed) {
+        this.ingestor = Robot.ingestor;
 
+        System.out.println("MESSAGE   " + ingestor.toString());
+        requires(ingestor);
 
-  } 
+    }
 
+    // Called just before this Command runs the first time
+    @Override
+    protected void initialize() {
+    }
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-  }
+    // Called repeatedly when this Command is scheduled to run
+    @Override
+    protected void execute() {
+        ingestor.driveMotors(ingestorSpeed);
+    }
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-    ingestor.driveMotors(ingestorSpeed);
-  }
+    // Make this return true when this Command no longer needs to run execute()
+    @Override
+    protected boolean isFinished() {
+        return false;
+    }
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+    // Called once after isFinished returns true
+    @Override
+    protected void end() {
+        ingestor.driveMotors(0);
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-    ingestor.driveMotors(0);
+    }
 
-  }
-
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-  }
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    @Override
+    protected void interrupted() {
+    }
 }

@@ -92,10 +92,10 @@ public class OI {
   }
 
   public void Init() {
-    buttonA1.whenPressed(new RunIngestor(-0.5)); //run ingestor inward
-    buttonB1.whenPressed(new RunIngestor(0.5)); //run ingestor outward
-    buttonX1.whenPressed(new UpIngestor(0.5)); // put ingestor up to pick up hatches
-    buttonY1.whenPressed(new DownIngestor(-0.5)); //put ingestor back down
+    buttonA1.whileHeld(new RunIngestor(-0.5)); //run ingestor inward
+    buttonB1.whileHeld(new RunIngestor(0.5)); //run ingestor outward
+    buttonX1.whileHeld(new UpIngestor(0.5)); // put ingestor up to pick up hatches
+    buttonY1.whileHeld(new DownIngestor(-0.5)); //put ingestor back down
     /*buttonClickLeft1.whenPressed(new AntiClockwiseTurn(0.26, driveTrain)); //rotate left 90 deg
     buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
     //buttonLB1.whenPressed(new ExtendSolFront()); //deploy hatch 

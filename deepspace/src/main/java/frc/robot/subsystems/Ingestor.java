@@ -36,34 +36,36 @@ public class Ingestor extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    //compressor = new Compressor(0);
-    
-    //solenoidW = new DoubleSolenoid(1, 2);
-    //solenoidL = new DoubleSolenoid(3, 4); // TODO get channel number, rename(fine for now, can be changed later)
-    //compressor.start();
+    compressor = new Compressor(0);
+    solenoidW = new DoubleSolenoid(1, 2);
+    solenoidL = new DoubleSolenoid(3, 4); // TODO get channel number, rename(fine for now, can be changed later)
+    compressor.start();
 
   }
   // for pnuematics for wedge pickup
 
     public void extend() {
-       // solenoidW.set(DoubleSolenoid.Value.kForward);
+       solenoidW.set(DoubleSolenoid.Value.kForward);
     }
 
     public void retract() {
-        //solenoidW.set(DoubleSolenoid.Value.kReverse);
+        solenoidW.set(DoubleSolenoid.Value.kReverse);
     }
     // for pnuematics for adjustment
 
     public void lift() {
-        //solenoidL.set(DoubleSolenoid.Value.kForward);
+        solenoidL.set(DoubleSolenoid.Value.kForward);
+        System.out.println("LIFTING");
     }
 
     public void lower() {
-        //solenoidL.set(DoubleSolenoid.Value.kReverse);
+        solenoidL.set(DoubleSolenoid.Value.kReverse);
+        System.out.println("LOWERING");
     }
 
 
     public void driveMotors(double speed){
+        System.out.println("Running ingestor motors...");
         leftIngestor.set(speed);
         rightIngestor.set(-speed);
     }

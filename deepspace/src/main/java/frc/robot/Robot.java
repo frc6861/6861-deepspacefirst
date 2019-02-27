@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
-        System.out.println("ENCODER: " + -elevator.elevatorMotor.getSensorCollection().getQuadraturePosition());
+        // System.out.println("ENCODER: " + -elevator.elevatorMotor.getSensorCollection().getQuadraturePosition());
         /*if (!bottomLimitSwitch.get()) {
             elevator.elevatorMotor.getSensorCollection().setQuadraturePosition(0, 0);
         }*/
