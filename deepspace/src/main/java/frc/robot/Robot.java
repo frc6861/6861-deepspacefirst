@@ -17,6 +17,7 @@ import frc.robot.auton.CargoMiddleHatch;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Ingestor;
+import frc.robot.subsystems.Kicker;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
     public static Elevator elevator = new Elevator();
     public static Ingestor ingestor = new Ingestor();
+    public static Kicker kicker = new Kicker();
     public static DigitalInput topLimitSwitch;
     public static DigitalInput bottomLimitSwitch;
 
