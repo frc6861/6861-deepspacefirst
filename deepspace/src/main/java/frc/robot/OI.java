@@ -18,6 +18,7 @@ import frc.robot.commands.DownIngestor;
 import frc.robot.commands.MoveElevator;
 //import frc.robot.commands.RetractSolFront;
 import frc.robot.commands.RunIngestor;
+import frc.robot.commands.RunKicker;
 /*import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.AutonOverride;
 import frc.robot.commands.Climb;
@@ -96,6 +97,8 @@ public class OI {
     buttonB1.whileHeld(new RunIngestor(0.5)); //run ingestor outward
     buttonX1.whileHeld(new UpIngestor(0.5)); // put ingestor up to pick up hatches
     buttonY1.whileHeld(new DownIngestor(-0.5)); //put ingestor back down
+    buttonLB1.whileHeld(new RunKicker(0.5));
+    buttonRB1.whileHeld(new RunKicker(-0.5));
     /*buttonClickLeft1.whenPressed(new AntiClockwiseTurn(0.26, driveTrain)); //rotate left 90 deg
     buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
     //buttonLB1.whenPressed(new ExtendSolFront()); //deploy hatch 
