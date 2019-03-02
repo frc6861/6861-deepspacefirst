@@ -15,13 +15,15 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutonOverRide;
 import frc.robot.commands.DeployBall;
 import frc.robot.commands.DownIngestor;
+import frc.robot.commands.HatchUp;
 //import frc.robot.commands.ExtendSolFront;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.RunIngestor;
 //import frc.robot.commands.RetractSolFront;
 //import frc.robot.commands.RunIngestor;
-import frc.robot.commands.RunKicker;
+//import frc.robot.commands.RunKicker;
 import frc.robot.commands.UpIngestor;
+import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Ingestor;
 /*import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.AutonOverride;
@@ -45,7 +47,7 @@ public class OI {
   private Joystick controller;
   private JoystickButton buttonY1,buttonX1,buttonA1,buttonB1,buttonLB1,buttonBack1,buttonRB1,buttonStart1,buttonClickLeft1,buttonClickRight1,buttonLT1,buttonRT1,
   buttonY2,buttonX2,buttonA2,buttonB2,buttonLB2,buttonBack2,buttonRB2,buttonStart2,buttonClickLeft2,buttonClickRight2,buttonLT2,buttonRT2;
-  
+  private Hatch hatch = new Hatch();
   private Ingestor ingestor =new Ingestor();
   public OI(){
     
@@ -110,16 +112,18 @@ public class OI {
     buttonA1.whenReleased(new RunIngestor(ingestor,0));
     buttonB1.whenReleased(new RunIngestor(ingestor,0));
 
-    buttonX1.whileHeld(new DownIngestor(ingestor)); // put ingestor up to pick up hatches
-    buttonY1.whileHeld(new UpIngestor(ingestor)); //put ingestor back UP
+    buttonY1.whileHeld(new DownIngestor(ingestor)); // put ingestor up to pick up hatches
+    buttonX1.whileHeld(new UpIngestor(ingestor)); //put ingestor back UP
 
-    buttonLB1.whileHeld(new RunKicker(0.5));
-    buttonRB1.whileHeld(new RunKicker(-0.5));
+    //buttonLB1.whileHeld(new RunKicker(0.5));
+    //buttonRB1.whileHeld(new RunKicker(-0.5));
     buttonClickLeft1.whenPressed(new DeployBall(0.2,2)); 
     //rotate left 90 deg
     //buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
-    //buttonLB1.whenPressed(new ExtendSolFront()); //deploy hatch 
-    //buttonRB1.whenPressed(new RetractSolFront()); //shoot ball    */
+    buttonLB1.whenPressed(new HatchUp(hatch, 0.5)); //deploy hatch 
+    buttonRB1.whenPressed(new HatchUp(hatch, -0.5)); //shoot ball   */
+    buttonLB1.whenReleased(new HatchUp(hatch, 0)); //deploy hatch 
+    buttonRB1.whenReleased(new HatchUp(hatch, 0));
     //buttonBack1.whileHeld(new AutonOverride(this));
 
     buttonClickLeft2.whileHeld(new MoveElevator(this));//ballCargoShip

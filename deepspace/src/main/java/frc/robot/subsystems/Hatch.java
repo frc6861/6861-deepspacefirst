@@ -20,7 +20,7 @@ public class Hatch extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public Hatch(){
-    hatchMotor = new WPI_TalonSRX(13);
+    hatchMotor = new WPI_TalonSRX(3);
 
 
   }

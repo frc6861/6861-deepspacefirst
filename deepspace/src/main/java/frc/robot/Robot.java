@@ -18,7 +18,7 @@ import frc.robot.subsystems.BallKicker;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Ingestor;
-import frc.robot.subsystems.Kicker;
+//import frc.robot.subsystems.Kicker;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
     private OI m_oi ;
     private Command m_autonomousCommand;
     public static Elevator elevator = new Elevator();
-    public static Kicker kicker = new Kicker();
+    //public static Kicker kicker = new Kicker();
     public static BallKicker ballKicker=new BallKicker();
     public static DigitalInput topLimitSwitch;
     public static DigitalInput bottomLimitSwitch;
