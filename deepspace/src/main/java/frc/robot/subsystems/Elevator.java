@@ -28,6 +28,7 @@ public class Elevator extends Subsystem {
         elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);//NOTE: Encoder returns a value reverse of what it should be! Put a - before
         elevatorMotor.setSensorPhase(true);//                                   any readings from it!
         elevatorMotor.setInverted(false);
+        elevatorMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
         
     }
 

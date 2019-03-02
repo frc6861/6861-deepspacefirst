@@ -14,9 +14,12 @@ import frc.robot.commands.DeployBall; //LEAVE THIS, IT IS A SURPRISE TOOL THAT W
 import frc.robot.commands.DownIngestor;
 import frc.robot.commands.HatchUp;
 import frc.robot.commands.HatchUpTimed;
+import frc.robot.commands.KickBall;
+import frc.robot.commands.KickBallBack;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.RunIngestor;
 import frc.robot.commands.UpIngestor;
+import frc.robot.subsystems.BallKicker;
 import frc.robot.subsystems.HatchPusher;
 import frc.robot.subsystems.Ingestor;
 
@@ -31,6 +34,7 @@ public class OI {
   buttonY2,buttonX2,buttonA2,buttonB2,buttonLB2,buttonBack2,buttonRB2,buttonStart2,buttonClickLeft2,buttonClickRight2,buttonLT2,buttonRT2;
   private HatchPusher hatch = new HatchPusher();
   private Ingestor ingestor =new Ingestor();
+  private BallKicker ballKicker = new BallKicker();
   public OI(){
     
     gamePad1 = new XboxController(0);
@@ -102,14 +106,17 @@ public class OI {
     //buttonClickLeft1.whenPressed(new DeployBall(0.2,2)); //UNCOMMENT THIS AND FIX PARAMETERS!!
     //rotate left 90 deg
     //buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
-    buttonLB1.whenPressed(new HatchUpTimed(0.2, hatch, 0.5)); //deploy hatch 
-    buttonRB1.whenPressed(new HatchUpTimed(0.2, hatch, -0.5)); //shoot ball   */
+    buttonLB1.whenPressed(new HatchUp(hatch, 0.25)); //deploy hatch 
+    buttonRB1.whenPressed(new HatchUp(hatch, -0.25)); //shoot ball   */
     buttonLB1.whenReleased(new HatchUp(hatch, 0)); //deploy hatch 
     buttonRB1.whenReleased(new HatchUp(hatch, 0));
     //buttonBack1.whileHeld(new AutonOverride(this));
-
+    buttonBack1.whenPressed(new KickBall(1,ballKicker, this));
+    buttonBack1.whenReleased(new KickBallBack(1,ballKicker, this));
     buttonClickLeft2.whileHeld(new MoveElevator(this));//ballCargoShip
     buttonClickRight2.whileHeld(new MoveElevator(this)); //hatchRocketandCargoShip
+    //buttonClickLeft2.whenReleased(new MoveElevator(this, 0));
+    //buttonClickRight2.whenReleased(new MoveElevator(this, 0));
     //buttonB2.whenPressed(new MoveElevator(elevator,"3")); //ballLowRocketShip
     // buttonLB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
     // buttonLT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip

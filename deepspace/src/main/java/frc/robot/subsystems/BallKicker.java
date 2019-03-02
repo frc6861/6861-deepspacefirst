@@ -25,10 +25,10 @@ public class BallKicker extends Subsystem {
     retract();
   }
   public void extend() {
-    ballKicker.set(DoubleSolenoid.Value.kForward);
+    ballKicker.set(DoubleSolenoid.Value.kReverse);
  }
 
  public void retract() {
-   ballKicker.set(DoubleSolenoid.Value.kReverse);
+   ballKicker.set(DoubleSolenoid.Value.kForward);
  }
 }

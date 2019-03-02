@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
 import frc.robot.OI;
 import frc.robot.subsystems.BallKicker;
 
-public class KickBall extends TimedCommand {
+public class KickBallBack extends TimedCommand {
   private BallKicker bk;
   private OI m_oi;
   
-  public KickBall(double timeout, BallKicker bk, OI m_oi) {
+  public KickBallBack(double timeout, BallKicker bk, OI m_oi) {
       super(timeout);
       this.bk = bk;
       this.m_oi = m_oi;
@@ -33,7 +33,7 @@ public class KickBall extends TimedCommand {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    bk.extend();
+    bk.retract();
    // Timer.delay(1.0);
     
 

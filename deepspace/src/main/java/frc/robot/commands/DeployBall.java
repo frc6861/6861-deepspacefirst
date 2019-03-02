@@ -29,7 +29,7 @@ public class DeployBall extends CommandGroup {
         }
 
         addParallel(new DeployBallIngestor(ingestor, speed));
-        addSequential(new KickBall());
+        //addSequential(new KickBall());
         System.out.println("Elevator down..."); //For testing purposes, replace with actual commands
         // these will run in order.
 

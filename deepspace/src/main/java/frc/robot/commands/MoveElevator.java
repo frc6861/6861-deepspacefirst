@@ -18,11 +18,13 @@ public class MoveElevator extends Command {
     private OI oi;
     private DigitalInput topSwitch;
     private DigitalInput bottomSwitch;
+    private double speed;
 
     public MoveElevator(OI oi) {
         this.elevator = Robot.elevator;
         requires(elevator);
         this.oi = oi;
+        //this.speed = speed;
         topSwitch = Robot.topLimitSwitch;
         bottomSwitch = Robot.bottomLimitSwitch;
 
@@ -44,7 +46,7 @@ public class MoveElevator extends Command {
             } else {
                 // System.out.println("Moving Elevator---- ButtonClickLeft2");
                 elevator.setPower(-0.5); // Makes the elevator move
-                elevator.setCurrentPower(-0.3); // This line is for limit switch checks
+                elevator.setCurrentPower(-0.5); // This line is for limit switch checks
             }
 
         } else if (oi.getButtonClickRight2()) {
@@ -53,7 +55,7 @@ public class MoveElevator extends Command {
             } else {
                 // System.out.println("Moving Elevator---- ButtonClickRight2");
                 elevator.setPower(0.5); // Makes the elevator move
-                elevator.setCurrentPower(0.3); // This line is for limit switch checks
+                elevator.setCurrentPower(0.5); // This line is for limit switch checks
             }
         } else {
             // System.out.println("Stopping Elevator---- No Button press detected.");

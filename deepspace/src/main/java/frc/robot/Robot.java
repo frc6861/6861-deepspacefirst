@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
     public static Elevator elevator = new Elevator();
     //public static Kicker kicker = new Kicker();
-    public static BallKicker ballKicker=new BallKicker();
+    //public static BallKicker ballKicker=new BallKicker();
     public static DigitalInput topLimitSwitch;
     public static DigitalInput bottomLimitSwitch;
 
