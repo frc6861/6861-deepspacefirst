@@ -6,37 +6,19 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-//import frc.robot.commands.UpIngestor;
 import frc.robot.commands.AutonOverRide;
 import frc.robot.commands.DeployBall;
 import frc.robot.commands.DownIngestor;
 import frc.robot.commands.HatchUp;
-//import frc.robot.commands.ExtendSolFront;
+import frc.robot.commands.HatchUpTimed;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.RunIngestor;
-//import frc.robot.commands.RetractSolFront;
-//import frc.robot.commands.RunIngestor;
-//import frc.robot.commands.RunKicker;
 import frc.robot.commands.UpIngestor;
 import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Ingestor;
-/*import frc.robot.commands.RaiseElevator;
-import frc.robot.commands.AutonOverride;
-import frc.robot.commands.Climb;
-import frc.robot.commands.DeployHatch;
-import frc.robot.commands.DeployBall;
-import frc.robot.commands.LiftIngestor;
-import frc.robot.commands.RunIngestor;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Elevator;
-import frc.robot.commands.AntiClockwiseTurn;
-import frc.robot.commands.ClockwiseTurn;*/
-import frc.robot.ElevatorPosition;
 
 /**
  * Add your docs here.
@@ -120,8 +102,8 @@ public class OI {
     buttonClickLeft1.whenPressed(new DeployBall(0.2,2)); 
     //rotate left 90 deg
     //buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
-    buttonLB1.whenPressed(new HatchUp(hatch, 0.5)); //deploy hatch 
-    buttonRB1.whenPressed(new HatchUp(hatch, -0.5)); //shoot ball   */
+    buttonLB1.whenPressed(new HatchUpTimed(0.2, hatch, 0.5)); //deploy hatch 
+    buttonRB1.whenPressed(new HatchUpTimed(0.2, hatch, -0.5)); //shoot ball   */
     buttonLB1.whenReleased(new HatchUp(hatch, 0)); //deploy hatch 
     buttonRB1.whenReleased(new HatchUp(hatch, 0));
     //buttonBack1.whileHeld(new AutonOverride(this));
