@@ -8,16 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 import frc.robot.subsystems.Ingestor;
 
 public class DownIngestor extends Command {
   private Ingestor ingestor;
-  private double ingestorSpeed;
+  
 
-  public DownIngestor(double power) {
-   // this.ingestor = Robot.ingestor;
-    this.ingestorSpeed=power;
+  public DownIngestor(Ingestor ingestor) {
+    this.ingestor = ingestor;
+    
   }
 
   // Called just before this Command runs the first time

@@ -22,21 +22,13 @@ public class Ingestor extends Subsystem {
     private DoubleSolenoid solenoidL=new DoubleSolenoid(4, 5);
     private OI m_oi;
     
-  public Ingestor(OI m_oi){
+  public Ingestor(){
     leftIngestor = new WPI_TalonSRX(22);
     rightIngestor = new WPI_TalonSRX(2);///12,13
-    this.m_oi = m_oi;
+    
   }
 
-  public void periodic() {
-    if (m_oi.getA1Button()) {
-        driveMotors(0.5);
-    } else if (m_oi.getB1Button()) {
-        driveMotors(-0.5);
-    } else {
-        driveMotors(0.0);
-    }
-   }
+  
 
   @Override
   public void initDefaultCommand() {
@@ -66,7 +58,7 @@ public class Ingestor extends Subsystem {
 
 
     public void driveMotors(double speed){
-        System.out.println("Running ingestor motors...");
+        System.out.println("Running ingestor motors..."+speed);
         leftIngestor.set(speed);
         rightIngestor.set(-speed);
     }

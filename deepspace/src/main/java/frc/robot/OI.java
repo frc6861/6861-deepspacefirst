@@ -17,9 +17,12 @@ import frc.robot.commands.DeployBall;
 import frc.robot.commands.DownIngestor;
 //import frc.robot.commands.ExtendSolFront;
 import frc.robot.commands.MoveElevator;
+import frc.robot.commands.RunIngestor;
 //import frc.robot.commands.RetractSolFront;
 //import frc.robot.commands.RunIngestor;
 import frc.robot.commands.RunKicker;
+import frc.robot.commands.UpIngestor;
+import frc.robot.subsystems.Ingestor;
 /*import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.AutonOverride;
 import frc.robot.commands.Climb;
@@ -43,6 +46,7 @@ public class OI {
   private JoystickButton buttonY1,buttonX1,buttonA1,buttonB1,buttonLB1,buttonBack1,buttonRB1,buttonStart1,buttonClickLeft1,buttonClickRight1,buttonLT1,buttonRT1,
   buttonY2,buttonX2,buttonA2,buttonB2,buttonLB2,buttonBack2,buttonRB2,buttonStart2,buttonClickLeft2,buttonClickRight2,buttonLT2,buttonRT2;
   
+  private Ingestor ingestor =new Ingestor();
   public OI(){
     
     gamePad1 = new XboxController(0);
@@ -101,10 +105,14 @@ public class OI {
   }
 
   public void init() {
-    //buttonA1.whileHeld(new RunIngestor(-0.5)); //run ingestor inward
-    //buttonB1.whileHeld(new RunIngestor(0.5)); //run ingestor outward
-    //buttonX1.whileHeld(new UpIngestor(0.5)); // put ingestor up to pick up hatches
-    buttonY1.whileHeld(new DownIngestor(-0.5)); //put ingestor back down
+    buttonA1.whileHeld(new RunIngestor(ingestor,-0.5)); //run ingestor inward
+    buttonB1.whileHeld(new RunIngestor(ingestor,0.5)); //run ingestor outward
+    buttonA1.whenReleased(new RunIngestor(ingestor,0));
+    buttonB1.whenReleased(new RunIngestor(ingestor,0));
+
+    buttonX1.whileHeld(new UpIngestor(ingestor)); // put ingestor up to pick up hatches
+    buttonY1.whileHeld(new DownIngestor(ingestor)); //put ingestor back down
+
     buttonLB1.whileHeld(new RunKicker(0.5));
     buttonRB1.whileHeld(new RunKicker(-0.5));
     buttonClickLeft1.whenPressed(new DeployBall(0.2,2)); 

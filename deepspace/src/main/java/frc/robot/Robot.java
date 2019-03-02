@@ -36,13 +36,11 @@ public class Robot extends TimedRobot {
     private OI m_oi ;
     private Command m_autonomousCommand;
     public static Elevator elevator = new Elevator();
-    public Ingestor ingestor;
     public static Kicker kicker = new Kicker();
     public static BallKicker ballKicker=new BallKicker();
     public static DigitalInput topLimitSwitch;
     public static DigitalInput bottomLimitSwitch;
 
-    public Robot robot;
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -50,15 +48,11 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        
-        robot = this;
-
         topLimitSwitch = new DigitalInput(1);
         bottomLimitSwitch = new DigitalInput(0);
         m_oi = new OI();
         m_oi.init();
         driveTrain=new DriveTrain(m_oi);
-        ingestor = new Ingestor(m_oi);
         SmartDashboard.putData("Auto mode", m_chooser);
         m_chooser.setDefaultOption("Auton Cargo Mid", "xxx");
         // m_chooser.addOption("My Auto", new CargoMiddleHatch(2,driveTrain));
@@ -66,14 +60,7 @@ public class Robot extends TimedRobot {
 
     }
 
-    public Robot getInstance() {
-        return robot;
-    }
     
-    public Ingestor getIngestor() {
-        return ingestor;
-    }
-
     /**
      * This function is called every robot packet, no matter the mode. Use this for
      * items like diagnostics that you want ran during disabled, autonomous,
