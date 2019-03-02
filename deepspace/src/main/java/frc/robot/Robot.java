@@ -17,7 +17,6 @@ import frc.robot.auton.CargoMiddleHatch;
 import frc.robot.subsystems.BallKicker;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Ingestor;
 //import frc.robot.subsystems.Kicker;
 
 /**
@@ -54,6 +53,7 @@ public class Robot extends TimedRobot {
         m_oi.init();
         driveTrain=new DriveTrain(m_oi);
         SmartDashboard.putData("Auto mode", m_chooser);
+        SmartDashboard.putNumber("Elevator Height", elevator.getElevatorHeight());
         m_chooser.setDefaultOption("Auton Cargo Mid", "xxx");
         // m_chooser.addOption("My Auto", new CargoMiddleHatch(2,driveTrain));
         // SmartDashboard.putData("Auto choices", m_chooser);

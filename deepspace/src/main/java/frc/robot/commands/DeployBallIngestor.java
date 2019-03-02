@@ -8,15 +8,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.subsystems.Ingestor;
 
 public class DeployBallIngestor extends Command {
   private double speed;
+  private Ingestor ingestor;
 
-  public DeployBallIngestor(double speed) {
+  public DeployBallIngestor(Ingestor ingestor, double speed) {
     // Use requires() here to declare subsystem dependencies
     //requires(Robot.ingestor);
     this.speed=speed;
+    this.ingestor = ingestor;
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +29,7 @@ public class DeployBallIngestor extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.ingestor.driveMotors(speed);
+    ingestor.driveMotors(speed);
 
   }
 

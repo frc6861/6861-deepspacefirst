@@ -9,17 +9,9 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.OI;
-import frc.robot.Robot;
-import frc.robot.commands.MoveElevator;
-import frc.robot.ElevatorPosition;
+
 
 /**
  * Add your docs here.
@@ -51,7 +43,7 @@ public class Elevator extends Subsystem {
     }
 
     public void setElevatiorHeight(double position) {
-        elevatorMotor.set(ControlMode.Position, position);
+        elevatorMotor.set(ControlMode.Position, position /1024 *2.5 *Math.PI);
         
     }
 
@@ -62,7 +54,8 @@ public class Elevator extends Subsystem {
 
     
     public double getElevatorHeight() {
-
+        /*double enc = -elevatorMotor.getSensorCollection().getQuadraturePosition();
+        return enc / 1024 *2.5 * Math.PI;*/
         return -elevatorMotor.getSensorCollection().getQuadraturePosition();
 
         

@@ -28,7 +28,7 @@ public class UpIngestor extends Command {
   @Override
   protected void execute() {
 
-    System.out.println("retract");
+    //System.out.println("retract");
     ingestor.retract();
   }
 

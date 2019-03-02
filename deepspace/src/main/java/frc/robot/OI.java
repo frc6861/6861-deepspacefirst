@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutonOverRide;
-import frc.robot.commands.DeployBall;
+import frc.robot.commands.DeployBall; //LEAVE THIS, IT IS A SURPRISE TOOL THAT WILL HELP US LATER
 import frc.robot.commands.DownIngestor;
 import frc.robot.commands.HatchUp;
 import frc.robot.commands.HatchUpTimed;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.RunIngestor;
 import frc.robot.commands.UpIngestor;
-import frc.robot.subsystems.Hatch;
+import frc.robot.subsystems.HatchPusher;
 import frc.robot.subsystems.Ingestor;
 
 /**
@@ -29,7 +29,7 @@ public class OI {
   private Joystick controller;
   private JoystickButton buttonY1,buttonX1,buttonA1,buttonB1,buttonLB1,buttonBack1,buttonRB1,buttonStart1,buttonClickLeft1,buttonClickRight1,buttonLT1,buttonRT1,
   buttonY2,buttonX2,buttonA2,buttonB2,buttonLB2,buttonBack2,buttonRB2,buttonStart2,buttonClickLeft2,buttonClickRight2,buttonLT2,buttonRT2;
-  private Hatch hatch = new Hatch();
+  private HatchPusher hatch = new HatchPusher();
   private Ingestor ingestor =new Ingestor();
   public OI(){
     
@@ -99,7 +99,7 @@ public class OI {
 
     //buttonLB1.whileHeld(new RunKicker(0.5));
     //buttonRB1.whileHeld(new RunKicker(-0.5));
-    buttonClickLeft1.whenPressed(new DeployBall(0.2,2)); 
+    //buttonClickLeft1.whenPressed(new DeployBall(0.2,2)); //UNCOMMENT THIS AND FIX PARAMETERS!!
     //rotate left 90 deg
     //buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
     buttonLB1.whenPressed(new HatchUpTimed(0.2, hatch, 0.5)); //deploy hatch 

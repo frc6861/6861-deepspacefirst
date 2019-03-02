@@ -7,17 +7,14 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.TimedCommand;
-import frc.robot.Robot;
-import frc.robot.subsystems.Hatch;
-
+import frc.robot.subsystems.HatchPusher;
 
 public class HatchUpTimed extends TimedCommand {
   private double speed;
-  private Hatch hatch;
+  private HatchPusher hatch;
 
-  public HatchUpTimed(double timeout, Hatch hatch, double speed) {
+  public HatchUpTimed(double timeout, HatchPusher hatch, double speed) {
     super(timeout, hatch);
     // Use requires() here to declare subsystem dependencies
     requires(hatch);

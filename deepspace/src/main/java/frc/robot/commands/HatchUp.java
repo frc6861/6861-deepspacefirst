@@ -8,15 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.subsystems.Hatch;
+import frc.robot.subsystems.HatchPusher;
 
 
 public class HatchUp extends Command {
   private double speed;
-  private Hatch hatch;
+  private HatchPusher hatch;
 
-  public HatchUp(Hatch hatch,double speed) {
+  public HatchUp(HatchPusher hatch,double speed) {
     // Use requires() here to declare subsystem dependencies
     requires(hatch);
     this.hatch=hatch;

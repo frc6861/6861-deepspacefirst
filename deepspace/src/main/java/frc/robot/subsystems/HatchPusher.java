@@ -14,12 +14,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-public class Hatch extends Subsystem {
+public class HatchPusher extends Subsystem {
   private WPI_TalonSRX hatchMotor;
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public Hatch(){
+  public HatchPusher(){
     hatchMotor = new WPI_TalonSRX(3);
 
 

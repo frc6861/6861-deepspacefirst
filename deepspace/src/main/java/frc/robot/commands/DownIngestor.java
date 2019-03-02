@@ -27,7 +27,7 @@ public class DownIngestor extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("extend");
+    //System.out.println("extend");
     ingestor.extend();
   }
 

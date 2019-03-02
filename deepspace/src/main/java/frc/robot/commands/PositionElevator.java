@@ -8,8 +8,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
-import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 
 public class PositionElevator extends Command {

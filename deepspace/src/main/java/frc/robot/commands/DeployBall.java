@@ -8,27 +8,41 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.OI;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Ingestor;
 
 public class DeployBall extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
-  public DeployBall(double speed,int time) {
-    // Add Commands here:
-     addSequential(new DeployBallIngestor(speed));
-     addSequential(new KickBall());
-    // these will run in order.
+    /**
+     * Add your docs here.
+     */
+    public DeployBall(OI m_oi, Elevator elevator, Ingestor ingestor, double speed, int time) {
+        // Add Commands here:
+        //addSequential(new MoveElevator(m_oi));
+        System.out.println("Elevator up..."); //For testing purposes, replace with actual commands
+        
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-    // To run multiple commands at the same time,
-    // use addParallel()
-    // e.g. addParallel(new Command1());
-    // addSequential(new Command2());
-    // Command1 and Command2 will run in parallel.
+        addParallel(new DeployBallIngestor(ingestor, speed));
+        addSequential(new KickBall());
+        System.out.println("Elevator down..."); //For testing purposes, replace with actual commands
+        // these will run in order.
 
-    // A command group will require all of the subsystems that each member
-    // would require.
-    // e.g. if Command1 requires chassis, and Command2 requires arm,
-    // a CommandGroup containing them would require both the chassis and the
-    // arm.
-  }
+        // To run multiple commands at the same time,
+        // use addParallel()
+        // e.g. addParallel(new Command1());
+        // addSequential(new Command2());
+        // Command1 and Command2 will run in parallel.
+
+        // A command group will require all of the subsystems that each member
+        // would require.
+        // e.g. if Command1 requires chassis, and Command2 requires arm,
+        // a CommandGroup containing them would require both the chassis and the
+        // arm.
+    }
 }
