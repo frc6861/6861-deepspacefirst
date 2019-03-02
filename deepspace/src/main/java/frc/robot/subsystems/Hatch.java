@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-public class Kicker extends Subsystem {
-  private WPI_TalonSRX kicker;
+public class Hatch extends Subsystem {
+  private WPI_TalonSRX hatchMotor;
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public Kicker(){
-    kicker = new WPI_TalonSRX(13);
+  public Hatch(){
+    hatchMotor = new WPI_TalonSRX(13);
 
 
   }
@@ -31,8 +31,8 @@ public class Kicker extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void driveKicker(double speed){
-    kicker.set(speed);
-   // System.out.println("Running kicker...");
-}
+  public void driveHatch(double speed){
+    hatchMotor.set(speed);
+
+ }
 }

@@ -9,19 +9,18 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.Kicker;
+import frc.robot.subsystems.Hatch;
 
-public class RunKicker extends Command {
-  private double kickerSpeed;
-  private Kicker kicker;
 
-  public RunKicker(double kickerSpeed) {
+public class HatchUp extends Command {
+  private double speed;
+  private Hatch hatch;
+
+  public HatchUp(Hatch hatch,double speed) {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-
-    this.kicker = Robot.kicker;
-        requires(kicker);
-
+    requires(hatch);
+    this.hatch=hatch;
+    this.speed=speed;
   }
 
   // Called just before this Command runs the first time
@@ -32,7 +31,7 @@ public class RunKicker extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    kicker.driveKicker(kickerSpeed);
+    hatch.driveHatch(speed);
 
   }
 
@@ -45,7 +44,7 @@ public class RunKicker extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    kicker.driveKicker(0);
+    
 
   }
 

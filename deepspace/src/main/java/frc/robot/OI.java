@@ -110,8 +110,8 @@ public class OI {
     buttonA1.whenReleased(new RunIngestor(ingestor,0));
     buttonB1.whenReleased(new RunIngestor(ingestor,0));
 
-    buttonX1.whileHeld(new UpIngestor(ingestor)); // put ingestor up to pick up hatches
-    buttonY1.whileHeld(new DownIngestor(ingestor)); //put ingestor back down
+    buttonX1.whileHeld(new DownIngestor(ingestor)); // put ingestor up to pick up hatches
+    buttonY1.whileHeld(new UpIngestor(ingestor)); //put ingestor back UP
 
     buttonLB1.whileHeld(new RunKicker(0.5));
     buttonRB1.whileHeld(new RunKicker(-0.5));

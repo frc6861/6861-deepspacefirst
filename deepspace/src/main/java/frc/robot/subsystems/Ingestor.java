@@ -19,7 +19,7 @@ public class Ingestor extends Subsystem {
     private WPI_TalonSRX rightIngestor;
     private Compressor compressor=new Compressor(0);
     private DoubleSolenoid solenoidW=new DoubleSolenoid(0, 1);
-    private DoubleSolenoid solenoidL=new DoubleSolenoid(4, 5);
+    //private DoubleSolenoid solenoidL=new DoubleSolenoid(0, 1);
     private OI m_oi;
     
   public Ingestor(){
@@ -46,15 +46,15 @@ public class Ingestor extends Subsystem {
     }
     // for pnuematics for adjustment
 
-    public void lift() {
-        solenoidL.set(DoubleSolenoid.Value.kForward);
-        System.out.println("LIFTING");
-    }
+    // public void lift() {
+    //     solenoidL.set(DoubleSolenoid.Value.kForward);
+    //     System.out.println("LIFTING");
+    // }
 
-    public void lower() {
-        solenoidL.set(DoubleSolenoid.Value.kReverse);
-        System.out.println("LOWERING");
-    }
+    // public void lower() {
+    //     solenoidL.set(DoubleSolenoid.Value.kReverse);
+    //     System.out.println("LOWERING");
+    // }
 
 
     public void driveMotors(double speed){

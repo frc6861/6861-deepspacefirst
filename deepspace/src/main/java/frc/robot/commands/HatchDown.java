@@ -8,15 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.Ingestor;
+import frc.robot.subsystems.Hatch;
 
-public class UpIngestor extends Command {
-  private Ingestor ingestor;
-  
-  public UpIngestor(Ingestor ingestor) {
-    this.ingestor = ingestor;
-    
-
+public class HatchDown extends Command {
+  private Hatch hatch;
+  private double speed;
+  public HatchDown(Hatch hatch,double speed) {
+    // Use requires() here to declare subsystem dependencies
+    this.hatch=hatch;
+    requires(hatch);
+    this.speed= speed;
   }
 
   // Called just before this Command runs the first time
@@ -27,9 +28,7 @@ public class UpIngestor extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    System.out.println("retract");
-    ingestor.retract();
+    hatch.driveHatch(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
