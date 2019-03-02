@@ -12,18 +12,31 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.OI;
 
 public class Ingestor extends Subsystem {
   private WPI_TalonSRX leftIngestor;
     private WPI_TalonSRX rightIngestor;
     private Compressor compressor=new Compressor(0);
-    private DoubleSolenoid solenoidW=new DoubleSolenoid(1, 2);
-    private DoubleSolenoid solenoidL=new DoubleSolenoid(3, 4);
+    private DoubleSolenoid solenoidW=new DoubleSolenoid(0, 1);
+    private DoubleSolenoid solenoidL=new DoubleSolenoid(4, 5);
+    private OI m_oi;
     
-  public Ingestor(){
+  public Ingestor(OI m_oi){
     leftIngestor = new WPI_TalonSRX(22);
-    rightIngestor = new WPI_TalonSRX(12);
+    rightIngestor = new WPI_TalonSRX(2);///12,13
+    this.m_oi = m_oi;
   }
+
+  public void periodic() {
+    if (m_oi.getA1Button()) {
+        driveMotors(0.5);
+    } else if (m_oi.getB1Button()) {
+        driveMotors(-0.5);
+    } else {
+        driveMotors(0.0);
+    }
+   }
 
   @Override
   public void initDefaultCommand() {

@@ -11,13 +11,14 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.UpIngestor;
+//import frc.robot.commands.UpIngestor;
 import frc.robot.commands.AutonOverRide;
+import frc.robot.commands.DeployBall;
 import frc.robot.commands.DownIngestor;
 //import frc.robot.commands.ExtendSolFront;
 import frc.robot.commands.MoveElevator;
 //import frc.robot.commands.RetractSolFront;
-import frc.robot.commands.RunIngestor;
+//import frc.robot.commands.RunIngestor;
 import frc.robot.commands.RunKicker;
 /*import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.AutonOverride;
@@ -92,15 +93,23 @@ public class OI {
     return buttonB2.get();
   }
 
-  public void Init() {
-    buttonA1.whileHeld(new RunIngestor(-0.5)); //run ingestor inward
-    buttonB1.whileHeld(new RunIngestor(0.5)); //run ingestor outward
-    buttonX1.whileHeld(new UpIngestor(0.5)); // put ingestor up to pick up hatches
+  public boolean getA1Button() {
+    return gamePad1.getAButton();
+  }
+  public boolean getB1Button() {
+    return gamePad1.getBButton();
+  }
+
+  public void init() {
+    //buttonA1.whileHeld(new RunIngestor(-0.5)); //run ingestor inward
+    //buttonB1.whileHeld(new RunIngestor(0.5)); //run ingestor outward
+    //buttonX1.whileHeld(new UpIngestor(0.5)); // put ingestor up to pick up hatches
     buttonY1.whileHeld(new DownIngestor(-0.5)); //put ingestor back down
     buttonLB1.whileHeld(new RunKicker(0.5));
     buttonRB1.whileHeld(new RunKicker(-0.5));
-    /*buttonClickLeft1.whenPressed(new AntiClockwiseTurn(0.26, driveTrain)); //rotate left 90 deg
-    buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
+    buttonClickLeft1.whenPressed(new DeployBall(0.2,2)); 
+    //rotate left 90 deg
+    //buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
     //buttonLB1.whenPressed(new ExtendSolFront()); //deploy hatch 
     //buttonRB1.whenPressed(new RetractSolFront()); //shoot ball    */
     //buttonBack1.whileHeld(new AutonOverride(this));

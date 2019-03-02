@@ -7,32 +7,28 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class Kicker extends Subsystem {
-  private WPI_TalonSRX kicker;
-
+public class BallKicker extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public Kicker(){
-    kicker = new WPI_TalonSRX(13);
-
-
-  }
+  private DoubleSolenoid ballKicker=new DoubleSolenoid(2, 3);//need to confirm ports
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    retract();
   }
+  public void extend() {
+    ballKicker.set(DoubleSolenoid.Value.kForward);
+ }
 
-  public void driveKicker(double speed){
-    kicker.set(speed);
-   // System.out.println("Running kicker...");
-}
+ public void retract() {
+   ballKicker.set(DoubleSolenoid.Value.kReverse);
+ }
 }

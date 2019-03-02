@@ -9,15 +9,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.Ingestor;
 
-public class DownIngestor extends Command {
-  private Ingestor ingestor;
-  private double ingestorSpeed;
+public class DeployBallIngestor extends Command {
+  private double speed;
 
-  public DownIngestor(double power) {
-   // this.ingestor = Robot.ingestor;
-    this.ingestorSpeed=power;
+  public DeployBallIngestor(double speed) {
+    // Use requires() here to declare subsystem dependencies
+    //requires(Robot.ingestor);
+    this.speed=speed;
   }
 
   // Called just before this Command runs the first time
@@ -28,7 +27,8 @@ public class DownIngestor extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    ingestor.lower();
+    //Robot.ingestor.driveMotors(speed);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

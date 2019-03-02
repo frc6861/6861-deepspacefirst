@@ -40,9 +40,7 @@ public class MoveElevator extends Command {
     protected void execute() {
         //System.out.println("ENCODER: " + elevator.elevatorMotor.getSensorCollection().getQuadraturePosition());
         if (oi.getButtonClickLeft2()) {
-            if (!bottomSwitch.get()) {
-                elevator.elevatorMotor.getSensorCollection().setQuadraturePosition(0, 0);
-
+            if (!topSwitch.get()) {
                 elevator.setPower(0.0);
             } else {
                 // System.out.println("Moving Elevator---- ButtonClickLeft2");
@@ -51,7 +49,7 @@ public class MoveElevator extends Command {
             }
 
         } else if (oi.getButtonClickRight2()) {
-            if (!topSwitch.get()) {
+            if (!bottomSwitch.get()) {
                 elevator.setPower(0.0);
             } else {
                 // System.out.println("Moving Elevator---- ButtonClickRight2");
