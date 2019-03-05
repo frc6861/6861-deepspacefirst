@@ -76,7 +76,7 @@ public class Robot extends TimedRobot {
         /*if (!bottomLimitSwitch.get()) {
             elevator.elevatorMotor.getSensorCollection().setQuadraturePosition(0, 0);
         }*/
-        if (m_oi.getButtonBack2()) {
+        if (m_oi.getButtonBack1()) {
             m_autonomousCommand.cancel();
         }
     }

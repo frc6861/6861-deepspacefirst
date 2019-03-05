@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutonOverRide;
 import frc.robot.commands.DeployBall; //LEAVE THIS, IT IS A SURPRISE TOOL THAT WILL HELP US LATER
 import frc.robot.commands.DownIngestor;
+import frc.robot.commands.GoElevator;
 import frc.robot.commands.HatchUp;
 import frc.robot.commands.HatchUpTimed;
 import frc.robot.commands.KickBall;
@@ -97,11 +98,11 @@ public class OI {
 
     buttonX1.whileHeld(new UpIngestor(ingestor)); //put ingestor back UP
     buttonY1.whileHeld(new DownIngestor(ingestor)); // put ingestor up to pick up hatches
-    buttonLT1.whileActive(new RunIngestor(ingestor,-0.8)); //run ingestor inward
-    buttonRT1.whileActive(new RunIngestor(ingestor,0.8)); //run ingestor outward
-    buttonLT1.whenInactive(new RunIngestor(ingestor,0));
-    buttonRT1.whenInactive(new RunIngestor(ingestor,0));
-    buttonLB1.whenPressed(new DeployBall(this, Robot.elevator, 0.8, 0.1));
+    buttonLB1.whenPressed(new RunIngestor(ingestor,-0.8)); //run ingestor inward
+    buttonRB1.whenPressed(new RunIngestor(ingestor,0.8)); //run ingestor outward
+    buttonLB1.whenReleased(new RunIngestor(ingestor,0));
+    buttonRB1.whenReleased(new RunIngestor(ingestor,0));
+    buttonA1.whenPressed(new DeployBall(this, Robot.elevator, 0.8, 0.1));
     buttonBack1.whileHeld(new AutonOverRide(this));
     buttonStart1.whenPressed(new KickBall(1,ballKicker, this));
     buttonStart1.whenReleased(new KickBallBack(1,ballKicker, this));
@@ -132,7 +133,10 @@ public class OI {
     //buttonRT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
     //buttonRB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip
     //buttonBack2.whenPressed(new AutonOverRide(this));
-    //buttonY2.whileHeld(new Climb(this));*/
+     buttonY2.whileHeld(new GoElevator(Robot.elevator,0.3));
+     buttonY2.whenReleased(new GoElevator(Robot.elevator,0));
+     buttonX2.whileHeld(new GoElevator(Robot.elevator,-0.3));
+     buttonX2.whenReleased(new GoElevator(Robot.elevator,0));
  }
  public boolean getButtonClickLeft2() {
    return buttonClickLeft2.get();
@@ -143,8 +147,8 @@ public class OI {
 
 
 
-public boolean getButtonBack2() {
-    return buttonBack2.get();
+public boolean getButtonBack1() {
+    return buttonBack1.get();
   }
 
   public Ingestor getIngestor() {
