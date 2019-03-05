@@ -22,6 +22,7 @@ import frc.robot.commands.UpIngestor;
 import frc.robot.subsystems.BallKicker;
 import frc.robot.subsystems.HatchPusher;
 import frc.robot.subsystems.Ingestor;
+import frc.robot.commands.PositionElevator;
 
 /**
  * Add your docs here.
@@ -93,36 +94,44 @@ public class OI {
   }
 
   public void init() {
-    buttonA1.whileHeld(new RunIngestor(ingestor,-0.5)); //run ingestor inward
-    buttonB1.whileHeld(new RunIngestor(ingestor,0.5)); //run ingestor outward
-    buttonA1.whenReleased(new RunIngestor(ingestor,0));
-    buttonB1.whenReleased(new RunIngestor(ingestor,0));
 
-    buttonY1.whileHeld(new DownIngestor(ingestor)); // put ingestor up to pick up hatches
     buttonX1.whileHeld(new UpIngestor(ingestor)); //put ingestor back UP
-
+    buttonY1.whileHeld(new DownIngestor(ingestor)); // put ingestor up to pick up hatches
+    buttonLT1.whileActive(new RunIngestor(ingestor,-0.8)); //run ingestor inward
+    buttonRT1.whileActive(new RunIngestor(ingestor,0.8)); //run ingestor outward
+    buttonLT1.whenInactive(new RunIngestor(ingestor,0));
+    buttonRT1.whenInactive(new RunIngestor(ingestor,0));
+    buttonLB1.whenPressed(new DeployBall(this, Robot.elevator, 0.8, 0.1));
+    buttonBack1.whileHeld(new AutonOverRide(this));
+    buttonStart1.whenPressed(new KickBall(1,ballKicker, this));
+    buttonStart1.whenReleased(new KickBallBack(1,ballKicker, this));
     //buttonLB1.whileHeld(new RunKicker(0.5));
     //buttonRB1.whileHeld(new RunKicker(-0.5));
     //buttonClickLeft1.whenPressed(new DeployBall(0.2,2)); //UNCOMMENT THIS AND FIX PARAMETERS!!
     //rotate left 90 deg
     //buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
-    buttonLB1.whenPressed(new HatchUp(hatch, 0.25)); //deploy hatch 
-    buttonRB1.whenPressed(new HatchUp(hatch, -0.25)); //shoot ball   */
-    buttonLB1.whenReleased(new HatchUp(hatch, 0)); //deploy hatch 
-    buttonRB1.whenReleased(new HatchUp(hatch, 0));
-    //buttonBack1.whileHeld(new AutonOverride(this));
-    buttonBack1.whenPressed(new KickBall(1,ballKicker, this));
-    buttonBack1.whenReleased(new KickBallBack(1,ballKicker, this));
+    buttonA2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLLOWROCKETSHIP));
+    buttonB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLCARGOSHIP));
+    buttonRB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLMIDROCKETSHIP));
+    buttonRT2.whileActive(new PositionElevator(Robot.elevator, ElevatorPosition.BALLTOPROCKETSHIP));
+
+    buttonBack2.whenPressed(new HatchUp(hatch, 0.25)); //deploy hatch 
+    buttonStart2.whenPressed(new HatchUp(hatch, -0.25)); //shoot ball   */
+    buttonBack2.whenReleased(new HatchUp(hatch, 0)); //deploy hatch 
+    buttonStart2.whenReleased(new HatchUp(hatch, 0));
+
+
     buttonClickLeft2.whileHeld(new MoveElevator(this));//ballCargoShip
     buttonClickRight2.whileHeld(new MoveElevator(this)); //hatchRocketandCargoShip
+
     //buttonClickLeft2.whenReleased(new MoveElevator(this, 0));
     //buttonClickRight2.whenReleased(new MoveElevator(this, 0));
     //buttonB2.whenPressed(new MoveElevator(elevator,"3")); //ballLowRocketShip
-    // buttonLB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
-    // buttonLT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
-    // buttonRT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
-    // buttonRB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip
-    buttonBack2.whenPressed(new AutonOverRide(this));
+    //buttonLB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
+    //buttonLT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
+    //buttonRT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
+    //buttonRB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip
+    //buttonBack2.whenPressed(new AutonOverRide(this));
     //buttonY2.whileHeld(new Climb(this));*/
  }
  public boolean getButtonClickLeft2() {
@@ -138,7 +147,13 @@ public boolean getButtonBack2() {
     return buttonBack2.get();
   }
 
+  public Ingestor getIngestor() {
+      return ingestor;
+  }
  
+  public BallKicker getBK() {
+      return ballKicker;
+  }
 }
 
 //// CREATING BUTTONS

@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
     private String m_autoSelected;
     private final SendableChooser<String> m_chooser = new SendableChooser<>();
     private DriveTrain driveTrain;
-    private OI m_oi ;
+    private OI m_oi;
     private Command m_autonomousCommand;
     public static Elevator elevator = new Elevator();
     //public static Kicker kicker = new Kicker();

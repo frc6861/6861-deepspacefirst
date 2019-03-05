@@ -8,13 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.ElevatorPosition;
 import frc.robot.subsystems.Elevator;
 
 public class PositionElevator extends Command {
     private Elevator elevator;
     private double position;
 
-    public PositionElevator(Elevator elevator, double position) {
+    public PositionElevator(Elevator elevator, ElevatorPosition ballcargoship) {
         this.elevator = elevator;
         this.position = position;
         // requires(driveTrain);
