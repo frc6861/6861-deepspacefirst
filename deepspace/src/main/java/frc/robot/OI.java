@@ -158,6 +158,9 @@ public boolean getButtonBack1() {
   public BallKicker getBK() {
       return ballKicker;
   }
+  public HatchPusher getHatchPusher() {
+    return hatch;
+  }
 }
 
 //// CREATING BUTTONS

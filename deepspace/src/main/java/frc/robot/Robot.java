@@ -13,11 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.auton.CargoMiddleHatch;
-import frc.robot.subsystems.BallKicker;
+import frc.robot.auton.DeployHatchAuton;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
-//import frc.robot.subsystems.Kicker;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,8 +33,6 @@ public class Robot extends TimedRobot {
     private OI m_oi;
     private Command m_autonomousCommand;
     public static Elevator elevator = new Elevator();
-    //public static Kicker kicker = new Kicker();
-    //public static BallKicker ballKicker=new BallKicker();
     public static DigitalInput topLimitSwitch;
     public static DigitalInput bottomLimitSwitch;
 
@@ -72,10 +68,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
-        // System.out.println("ENCODER: " + -elevator.elevatorMotor.getSensorCollection().getQuadraturePosition());
-        /*if (!bottomLimitSwitch.get()) {
-            elevator.elevatorMotor.getSensorCollection().setQuadraturePosition(0, 0);
-        }*/
+        
         if (m_oi.getButtonBack1()) {
             m_autonomousCommand.cancel();
         }
@@ -97,12 +90,12 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         Scheduler.getInstance().removeAll();
         m_autoSelected = m_chooser.getSelected();
-        m_autoSelected = SmartDashboard.getString("Auto Selector", "CargoMidHatch");
+        m_autoSelected = SmartDashboard.getString("Auto Selector", "DeployHatchAuton");
 
         switch (m_autoSelected) {
-        case "CargoMidHatch":
+        case "DeployHatchAuton":
             // Put custom auto code here
-            m_autonomousCommand = new CargoMiddleHatch(2, driveTrain);
+            m_autonomousCommand = new DeployHatchAuton(2, driveTrain,m_oi);
             break;
         case kDefaultAuto:
         default:
@@ -132,16 +125,6 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-
-        // System.out.println("SWITCHES: " + topLimitSwitch.get() + " " +
-        // bottomLimitSwitch.get());
-        // if((!topLimitSwitch.get() && (elevator.getCurrentPower() > 0.0)) ||
-        // (!bottomLimitSwitch.get() && (elevator.getCurrentPower() < 0.0))) {
-        // elevator.setPower(0.0);
-        // }
-
-        //ingestor.periodic();
-        //ingestor.driveMotors(0.5);
     }
 
     /**
@@ -167,7 +150,7 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        // ingestor.retract();
+
     }
 
 }

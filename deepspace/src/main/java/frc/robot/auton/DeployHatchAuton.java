@@ -19,7 +19,7 @@ public class DeployHatchAuton extends CommandGroup {
   public DeployHatchAuton(double time,DriveTrain driveTrain, OI m_oi) {
     // Add Commands here:
     addSequential(new CargoMiddleHatch(time, driveTrain));
-    //addSequential(new HatchUpTimed(1.0, m_oi.getHatchPusher(),0.3));//double timeout, HatchPusher hatch, double speed
+    addSequential(new HatchUpTimed(1.0, m_oi.getHatchPusher(),0.3));//double timeout, HatchPusher hatch, double speed
 
     // addSequential(new Command2());
     // these will run in order.
