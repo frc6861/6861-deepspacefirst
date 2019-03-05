@@ -20,7 +20,7 @@ public class DeployBall extends CommandGroup {
         // Add Commands here:
         //addSequential(new MoveElevator(m_oi));
         //System.out.println("Elevator up..."); //For testing purposes, replace with actual commands
-        addSequential(new DeployBallIngestor(m_oi.getIngestor(), speed), 0.1);
+        addSequential(new DeployBallIngestor(m_oi.getIngestor(), speed), 0.6);
         addSequential(new KickBall(time, m_oi.getBK(), m_oi));
         addSequential(new KickBallBack(time, m_oi.getBK(), m_oi));
        // System.out.println("Elevator down..."); //For testing purposes, replace with actual commands

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 import frc.robot.subsystems.Elevator;
 
 public class GoElevator extends Command {
@@ -36,7 +37,7 @@ public class GoElevator extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return !(Robot.topLimitSwitch.get()  || Robot.topLimitSwitch.get());
   }
 
   // Called once after isFinished returns true
