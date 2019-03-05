@@ -32,7 +32,7 @@ public class CargoMiddleHatch extends TimedCommand {
   @Override
   protected void execute() {
     System.out.println("Auton");
-    driveTrain.setMecanumDriveCommand(0, -0.25, 0, 0);
+    driveTrain.setMecanumDriveCommand(0, 0.25, 0, 0);
 
   }
 
