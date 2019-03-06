@@ -24,7 +24,8 @@ public class Elevator extends Subsystem {
 
     public Elevator() {
        
-        elevatorMotor = new WPI_TalonSRX(23);
+        //elevatorMotor = new WPI_TalonSRX(23);//Practice
+        elevatorMotor = new WPI_TalonSRX(14);//competition
         elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);//NOTE: Encoder returns a value reverse of what it should be! Put a - before
         elevatorMotor.setSensorPhase(true);//                                   any readings from it!
         elevatorMotor.setInverted(false);

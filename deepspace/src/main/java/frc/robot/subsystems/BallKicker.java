@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BallKicker extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  //practice
+  //private DoubleSolenoid ballKicker=new DoubleSolenoid(2, 3);//need to confirm ports
+  //competition
   private DoubleSolenoid ballKicker=new DoubleSolenoid(2, 3);//need to confirm ports
 
   @Override

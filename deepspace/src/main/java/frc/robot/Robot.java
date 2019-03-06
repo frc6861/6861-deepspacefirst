@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.auton.DeployBallAuton;
 import frc.robot.auton.DeployHatchAuton;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
@@ -50,9 +51,9 @@ public class Robot extends TimedRobot {
         driveTrain=new DriveTrain(m_oi);
         SmartDashboard.putData("Auto mode", m_chooser);
         SmartDashboard.putNumber("Elevator Height", elevator.getElevatorHeight());
-        m_chooser.setDefaultOption("Auton Cargo Mid", "xxx");
-        // m_chooser.addOption("My Auto", new CargoMiddleHatch(2,driveTrain));
-        // SmartDashboard.putData("Auto choices", m_chooser);
+        m_chooser.addOption("DeployHatchAuton","DeployHatchAuton");
+        m_chooser.addOption("DeployBallAuton","DeployBallAuton");
+        //SmartDashboard.putData("Auto choices", m_chooser);
 
     }
 
@@ -90,12 +91,17 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         Scheduler.getInstance().removeAll();
         m_autoSelected = m_chooser.getSelected();
-        m_autoSelected = SmartDashboard.getString("Auto Selector", "DeployHatchAuton");
-
+        //m_autoSelected = SmartDashboard.getString("Auto Selector", "DeployHatchAuton");
+        //m_autoSelected = SmartDashboard.getString("Auto Selector", "DeployBallAuton");
+        System.out.println("***************************************************************************");
         switch (m_autoSelected) {
         case "DeployHatchAuton":
             // Put custom auto code here
-            m_autonomousCommand = new DeployHatchAuton(2, driveTrain,m_oi);
+            m_autonomousCommand = new DeployHatchAuton(5, driveTrain,m_oi);
+            break;
+        case "DeployBallAuton":
+            // Put custom auto code here
+            m_autonomousCommand = new DeployBallAuton(2, driveTrain,m_oi);
             break;
         case kDefaultAuto:
         default:

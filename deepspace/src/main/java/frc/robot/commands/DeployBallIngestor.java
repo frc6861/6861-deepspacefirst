@@ -16,7 +16,7 @@ public class DeployBallIngestor extends Command {
 
   public DeployBallIngestor(Ingestor ingestor, double speed) {
     // Use requires() here to declare subsystem dependencies
-    //requires(Robot.ingestor);
+    
     this.speed=speed;
     this.ingestor = ingestor;
   }

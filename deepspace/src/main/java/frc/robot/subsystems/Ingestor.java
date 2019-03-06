@@ -18,11 +18,16 @@ public class Ingestor extends Subsystem {
     private WPI_TalonSRX rightIngestor;
     private Compressor compressor=new Compressor(0);
     private DoubleSolenoid solenoidW=new DoubleSolenoid(0, 1);
-    //private DoubleSolenoid solenoidL=new DoubleSolenoid(0, 1);
+    
     
   public Ingestor(){
-    leftIngestor = new WPI_TalonSRX(22);
-    rightIngestor = new WPI_TalonSRX(2);///12,13
+    //practice
+    // leftIngestor = new WPI_TalonSRX(22);
+    // rightIngestor = new WPI_TalonSRX(2);
+
+    //competition
+    leftIngestor = new WPI_TalonSRX(12);
+    rightIngestor = new WPI_TalonSRX(11);
     
   }
 
@@ -31,6 +36,8 @@ public class Ingestor extends Subsystem {
   @Override
   public void initDefaultCommand() {
     compressor.start();
+    retract();
+    driveMotors(0);
 
   }
   // for pnuematics for wedge pickup

@@ -9,19 +9,22 @@ package frc.robot.auton;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.OI;
+import frc.robot.commands.DeployBallIngestor;
 import frc.robot.commands.HatchUpTimed;
+import frc.robot.commands.KickBall;
+import frc.robot.commands.KickBallBack;
 import frc.robot.subsystems.DriveTrain;
 
-public class DeployHatchAuton extends CommandGroup {
+public class DeployBallAuton extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public DeployHatchAuton(double time,DriveTrain driveTrain, OI m_oi) {
+  public DeployBallAuton(double time,DriveTrain driveTrain, OI m_oi) {
     // Add Commands here:
     addSequential(new CargoMiddleHatch(time, driveTrain));
-    
-    //addSequential(new HatchUpTimed(1.0, m_oi.getHatchPusher(),0.3));//double timeout, HatchPusher hatch, double speed
-    //addSequential(new CargoMiddleHatch(0.3, driveTrain));
+    addSequential(new DeployBallIngestor(m_oi.getIngestor(), 0.6));
+    //addSequential(new KickBall(time, m_oi.getBK(), m_oi));
+    //(new KickBallBack(time, m_oi.getBK(), m_oi));
     // addSequential(new Command2());
     // these will run in order.
 

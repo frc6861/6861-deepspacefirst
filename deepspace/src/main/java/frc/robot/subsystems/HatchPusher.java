@@ -20,7 +20,10 @@ public class HatchPusher extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public HatchPusher(){
-    hatchMotor = new WPI_TalonSRX(3);
+    //practice
+   // hatchMotor = new WPI_TalonSRX(3);
+   //competition
+    hatchMotor = new WPI_TalonSRX(13);
     hatchMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 
   }

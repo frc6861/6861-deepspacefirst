@@ -28,17 +28,17 @@ public class DriveTrain extends Subsystem {
   
   public DriveTrain(OI m_oi) {
     
-    leftFront = new WPI_TalonSRX(10);//14 front left, 15 front right elevator 13
-    rightFront = new WPI_TalonSRX(11);//0 back left  1 back right
-    leftRear= new WPI_TalonSRX(24);                                   //PRACTICE ROBOT
-    rightRear = new WPI_TalonSRX(25);
+    // leftFront = new WPI_TalonSRX(10);//14 front left, 15 front right elevator 13
+    // rightFront = new WPI_TalonSRX(11);//0 back left  1 back right
+    // leftRear= new WPI_TalonSRX(24);                                   //PRACTICE ROBOT
+    // rightRear = new WPI_TalonSRX(25);
     
 
 
-    //leftFront = new WPI_TalonSRX(4);//final
-    //rightFront = new WPI_TalonSRX(5);//       FINAL ROBOT
-    //leftRear= new WPI_TalonSRX(23);//final
-    //rightRear = new WPI_TalonSRX(15);//final
+    leftFront = new WPI_TalonSRX(4);//final
+    rightFront = new WPI_TalonSRX(5);//       FINAL ROBOT
+    leftRear= new WPI_TalonSRX(23);//final
+    rightRear = new WPI_TalonSRX(15);//final
 
     this.m_oi=m_oi;
     mecanumDrive = new MecanumDrive(leftFront,leftRear,rightFront,rightRear);
