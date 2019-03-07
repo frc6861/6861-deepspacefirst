@@ -17,7 +17,11 @@ public class Ingestor extends Subsystem {
   private WPI_TalonSRX leftIngestor;
     private WPI_TalonSRX rightIngestor;
     private Compressor compressor=new Compressor(0);
-    private DoubleSolenoid solenoidW=new DoubleSolenoid(0, 1);
+
+    //practice
+    //private DoubleSolenoid solenoidW=new DoubleSolenoid(0, 1);
+    //competition
+    private DoubleSolenoid solenoidW=new DoubleSolenoid(4,5);
     
     
   public Ingestor(){
