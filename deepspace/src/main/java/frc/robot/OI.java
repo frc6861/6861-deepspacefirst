@@ -122,8 +122,11 @@ public class OI {
     buttonStart2.whenReleased(new HatchUp(hatch, 0));
 
 
-    buttonClickLeft2.whileHeld(new MoveElevator(this));//ballCargoShip
-    buttonClickRight2.whileHeld(new MoveElevator(this)); //hatchRocketandCargoShip
+    buttonX2.whenPressed(new MoveElevator(this, 0.5));//ballCargoShip
+    buttonY2.whenPressed(new MoveElevator(this, 0.5)); //hatchRocketandCargoShip
+    buttonX2.whenReleased(new MoveElevator(this, 0));//ballCargoShip
+    buttonY2.whenReleased(new MoveElevator(this, 0));
+
 
     //buttonClickLeft2.whenReleased(new MoveElevator(this, 0));
     //buttonClickRight2.whenReleased(new MoveElevator(this, 0));
@@ -133,16 +136,23 @@ public class OI {
     //buttonRT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
     //buttonRB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip
     //buttonBack2.whenPressed(new AutonOverRide(this));
-     buttonY2.whileHeld(new GoElevator(Robot.elevator,0.7));
+     /*buttonY2.whileHeld(new GoElevator(Robot.elevator,0.7));
      buttonY2.whenReleased(new GoElevator(Robot.elevator,0));
      buttonX2.whileHeld(new GoElevator(Robot.elevator,-0.7));
-     buttonX2.whenReleased(new GoElevator(Robot.elevator,0));
+     buttonX2.whenReleased(new GoElevator(Robot.elevator,0));*/
  }
  public boolean getButtonClickLeft2() {
    return buttonClickLeft2.get();
  }
  public boolean getButtonClickRight2() {
   return buttonClickRight2.get();
+}
+
+public boolean getButtonX2() {
+  return buttonX2.get();
+}
+public boolean getButtonY2() {
+ return buttonY2.get();
 }
 
 

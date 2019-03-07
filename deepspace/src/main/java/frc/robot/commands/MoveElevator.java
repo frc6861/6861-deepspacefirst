@@ -20,11 +20,11 @@ public class MoveElevator extends Command {
     private DigitalInput bottomSwitch;
     private double speed;
 
-    public MoveElevator(OI oi) {
+    public MoveElevator(OI oi, double speed) {
         this.elevator = Robot.elevator;
         requires(elevator);
         this.oi = oi;
-        //this.speed = speed;
+        this.speed = speed;
         topSwitch = Robot.topLimitSwitch;
         bottomSwitch = Robot.bottomLimitSwitch;
 
@@ -40,22 +40,22 @@ public class MoveElevator extends Command {
     @Override
     protected void execute() {
         //System.out.println("ENCODER: " + elevator.elevatorMotor.getSensorCollection().getQuadraturePosition());
-        if (oi.getButtonClickLeft2()) {
-            if (!topSwitch.get()) {
-                elevator.setPower(0.0);
-            } else {
-                // System.out.println("Moving Elevator---- ButtonClickLeft2");
-                elevator.setPower(-0.5); // Makes the elevator move
-                elevator.setCurrentPower(-0.5); // This line is for limit switch checks
-            }
-
-        } else if (oi.getButtonClickRight2()) {
+        if (oi.getButtonX2()) {
             if (!bottomSwitch.get()) {
                 elevator.setPower(0.0);
             } else {
+                // System.out.println("Moving Elevator---- ButtonClickLeft2");
+                elevator.setPower(-speed); // Makes the elevator move
+                elevator.setCurrentPower(-speed); // This line is for limit switch checks
+            }
+
+        } else if (oi.getButtonY2()) {
+            if (!topSwitch.get()) {
+                elevator.setPower(0.0);
+            } else {
                 // System.out.println("Moving Elevator---- ButtonClickRight2");
-                elevator.setPower(0.5); // Makes the elevator move
-                elevator.setCurrentPower(0.5); // This line is for limit switch checks
+                elevator.setPower(speed); // Makes the elevator move
+                elevator.setCurrentPower(speed); // This line is for limit switch checks
             }
         } else {
             // System.out.println("Stopping Elevator---- No Button press detected.");
