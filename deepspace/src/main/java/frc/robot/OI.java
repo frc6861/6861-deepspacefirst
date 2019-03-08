@@ -122,8 +122,8 @@ public class OI {
     buttonStart2.whenReleased(new HatchUp(hatch, 0));
 
 
-    buttonX2.whenPressed(new MoveElevator(this, 0.5));//ballCargoShip
-    buttonY2.whenPressed(new MoveElevator(this, 0.5)); //hatchRocketandCargoShip
+    buttonX2.whenPressed(new MoveElevator(this, 0.9));//ballCargoShip
+    buttonY2.whenPressed(new MoveElevator(this, 0.9)); //hatchRocketandCargoShip
     buttonX2.whenReleased(new MoveElevator(this, 0));//ballCargoShip
     buttonY2.whenReleased(new MoveElevator(this, 0));
 
