@@ -33,6 +33,7 @@ public class KickBall extends TimedCommand {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("Extending...");
     bk.extend();
    // Timer.delay(1.0);
     

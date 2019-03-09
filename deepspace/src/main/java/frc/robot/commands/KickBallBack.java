@@ -33,6 +33,7 @@ public class KickBallBack extends TimedCommand {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("Retracting...");
     bk.retract();
    // Timer.delay(1.0);
     
