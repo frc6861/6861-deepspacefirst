@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -49,12 +50,10 @@ public class Robot extends TimedRobot {
         m_oi = new OI();
         m_oi.init();
         driveTrain=new DriveTrain(m_oi);
-        //SmartDashboard.putData("Auto mode", m_chooser);
+        CameraServer.getInstance().startAutomaticCapture(0);
+        if(m_oi.getButtonBack1())
+            CameraServer.getInstance().removeCamera(CameraServer.getInstance().startAutomaticCapture(0).getName());
         SmartDashboard.putNumber("Elevator Height", elevator.getElevatorHeight());
-        //m_chooser.addOption("DeployHatchAuton","DeployHatchAuton");
-        //m_chooser.addOption("DeployBallAuton","DeployBallAuton");
-        //SmartDashboard.putData("Auto choices", m_chooser);
-
     }
 
     
@@ -69,10 +68,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
-        
-        /*if (m_oi.getButtonBack1()) {
-            m_autonomousCommand.cancel();
-        }*/
+       
     }
 
     /**
@@ -90,30 +86,6 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         Scheduler.getInstance().removeAll();
-        //m_autoSelected = m_chooser.getSelected();
-        //m_autoSelected = SmartDashboard.getString("Auto Selector", "DeployHatchAuton");
-        //m_autoSelected = SmartDashboard.getString("Auto Selector", "DeployBallAuton");
-        System.out.println("***************************************************************************");
-        /*switch (m_autoSelected) {
-        case "DeployHatchAuton":
-            // Put custom auto code here
-            m_autonomousCommand = new DeployHatchAuton(5, driveTrain,m_oi);
-            break;
-        case "DeployBallAuton":
-            // Put custom auto code here
-            m_autonomousCommand = new DeployBallAuton(2, driveTrain,m_oi);
-            break;
-        case kDefaultAuto:
-        default:
-            // Put default auto code here
-
-            break;
-        }
-        if (m_autonomousCommand != null) {
-            System.out.println("Auto trigger");
-            m_autonomousCommand.start();
-        }*/
-
     }
 
     /**

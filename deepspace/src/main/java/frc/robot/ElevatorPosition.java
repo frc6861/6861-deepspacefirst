@@ -1,7 +1,7 @@
 package frc.robot; 
 
 public enum ElevatorPosition{ //ENTIRE RANGE IS ~38584 pulses
-    BALLCARGOSHIP(80), //80 cm
+    BALLCARGOSHIP(80), //80 cm wheel bottom 95
     HATCHROCKETANDCARGOSHIP(48), //48 cm
     BALLLOWROCKETSHIP(70), //70 cm
     HATCHMIDROCKETSHIP(119), //119 cm

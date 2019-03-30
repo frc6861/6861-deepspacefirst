@@ -43,6 +43,9 @@ public class Elevator extends Subsystem {
         setPower(0.0);
 
     }
+    public void resetEncoder(){
+        elevatorMotor.getSensorCollection().setQuadraturePosition(0,0);
+    }
 
     public void setElevatiorHeight(double position) {
         elevatorMotor.set(ControlMode.Position, position /1024 *2.5 *Math.PI);

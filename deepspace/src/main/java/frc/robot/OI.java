@@ -94,6 +94,10 @@ public class OI {
     return gamePad1.getBButton();
   }
 
+  public double getRT1(){
+      return gamePad1.getRawAxis(3);
+  }
+
   public void init() {
 
     buttonX1.whileHeld(new UpIngestor(ingestor)); //put ingestor back UP
@@ -131,7 +135,7 @@ public class OI {
     //buttonClickLeft2.whenReleased(new MoveElevator(this, 0));
     //buttonClickRight2.whenReleased(new MoveElevator(this, 0));
     //buttonB2.whenPressed(new MoveElevator(elevator,"3")); //ballLowRocketShip
-    //buttonLB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
+    //buttonLB2.whenPressed(new PositionElevator(this,ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchMidRocketShip
     //buttonLT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLMIDROCKETSHIP)); //ballMidRocketShip
     //buttonRT2.whenPressed(new PositionElevator(elevator, ElevatorPosition.HATCHMIDROCKETSHIP)); //hatchTopRocketShip
     //buttonRB2.whenPressed(new PositionElevator(elevator, ElevatorPosition.BALLTOPROCKETSHIP)); //ballTopRocketShip
