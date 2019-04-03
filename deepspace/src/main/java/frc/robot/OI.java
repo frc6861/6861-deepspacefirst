@@ -98,6 +98,10 @@ public class OI {
       return gamePad1.getRawAxis(3);
   }
 
+  public double getLT1(){
+    return gamePad1.getRawAxis(2);
+}
+
   public void init() {
 
     buttonX1.whileHeld(new UpIngestor(ingestor)); //put ingestor back UP

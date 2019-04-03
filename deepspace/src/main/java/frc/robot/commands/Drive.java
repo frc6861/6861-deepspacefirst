@@ -31,7 +31,7 @@ public class Drive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    driveTrain.setMecanumDriveCommand(0.6*oi.getGamePad1().getRawAxis(0), -0.6*oi.getGamePad1().getRawAxis(1), 0.4*oi.getGamePad1().getRawAxis(4), 0);
+    driveTrain.setMecanumDriveCommand(oi.getGamePad1().getRawAxis(0), -oi.getGamePad1().getRawAxis(1), oi.getGamePad1().getRawAxis(4), 0);
     //System.out.println("Driving!!!");
   }
 
