@@ -52,7 +52,7 @@ public class DriveTrain extends Subsystem {
   }
   public void setMecanumDriveCommand(double ySpeed, double xSpeed, double zRotation, double gyroAngle) {
         if (m_oi.getRT1() > 0.1) {
-            mecanumDrive.driveCartesian(0.5 * ySpeed, 0.5 * xSpeed, 0.5 * zRotation);
+            mecanumDrive.driveCartesian(0.4 * ySpeed, 0.4 * xSpeed, 0.4 * zRotation);
         } else {
             mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
         }

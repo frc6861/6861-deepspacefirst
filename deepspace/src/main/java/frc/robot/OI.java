@@ -116,9 +116,9 @@ public class OI {
     //rotate left 90 deg
     //buttonClickRight1.whenPressed(new ClockwiseTurn(0.26, driveTrain)); //rotate right 90 deg*/
     buttonA2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLLOWROCKETSHIP));
-    buttonB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLCARGOSHIP));
-    buttonRB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLMIDROCKETSHIP));
-    buttonRT2.whileActive(new PositionElevator(Robot.elevator, ElevatorPosition.BALLTOPROCKETSHIP));
+    //buttonB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLCARGOSHIP));
+    //buttonRB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLMIDROCKETSHIP));
+    //buttonRT2.whileActive(new PositionElevator(Robot.elevator, ElevatorPosition.BALLTOPROCKETSHIP));
 
     buttonBack2.whenPressed(new HatchUp(hatch, 0.25)); //deploy hatch 
     buttonStart2.whenPressed(new HatchUp(hatch, -0.25)); //shoot ball   */
