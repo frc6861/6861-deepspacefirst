@@ -106,8 +106,8 @@ public class OI {
 
     buttonX1.whileHeld(new UpIngestor(ingestor)); //put ingestor back UP
     buttonY1.whileHeld(new DownIngestor(ingestor)); // put ingestor up to pick up hatches
-    buttonLB1.whenPressed(new RunIngestor(ingestor,-1.0)); //run ingestor inward
-    buttonRB1.whenPressed(new RunIngestor(ingestor,1.0)); //run ingestor outward
+    buttonLB1.whenPressed(new RunIngestor(ingestor,-0.7)); //run ingestor inward
+    buttonRB1.whenPressed(new RunIngestor(ingestor,0.7)); //run ingestor outward
     buttonLB1.whenReleased(new RunIngestor(ingestor,0));
     buttonRB1.whenReleased(new RunIngestor(ingestor,0));
     buttonA1.whenPressed(new DeployBall(this, Robot.elevator, 0.9, 0.1));

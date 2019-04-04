@@ -54,9 +54,6 @@ public class DriveTrain extends Subsystem {
         if (m_oi.getRT1() > 0.1) {
             mecanumDrive.driveCartesian(0.4 * ySpeed, 0.4 * xSpeed, 0.4 * zRotation);
         } 
-        else if(m_oi.getLT1() > 0.1){
-            mecanumDrive.driveCartesian(0.2 * ySpeed, 0.2 * xSpeed, 0.2 * zRotation);
-        }
         else {
             mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
         }
