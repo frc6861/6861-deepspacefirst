@@ -8,33 +8,28 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Compressor;
 import frc.robot.OI;
-import frc.robot.subsystems.DriveTrain;
 
-public class Drive extends Command {
-  private DriveTrain driveTrain;
+public class TurnCompressorOn extends Command {
+  private Compressor compressor;
   private OI oi;
 
-
-  public Drive(OI m_oi,DriveTrain driveTrain) {
-    this.oi=m_oi;
-    this.driveTrain=driveTrain;
-     requires(driveTrain);
-    }
+  public TurnCompressorOn(OI oi) {
+    this.oi = oi;
+  }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.print("Initializing Drive Command");
+      compressor.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    driveTrain.setMecanumDriveCommand(0.6* oi.getGamePad1().getRawAxis(0), -0.6*oi.getGamePad1().getRawAxis(1), 0.5* oi.getGamePad1().getRawAxis(4), 0);
-    //System.out.println("Driving!!!");
+      compressor.start();
   }
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
