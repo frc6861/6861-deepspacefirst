@@ -9,17 +9,22 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
+import frc.robot.subsystems.Color;
 import frc.robot.subsystems.DriveTrain;
 
 public class Drive extends Command {
   private DriveTrain driveTrain;
   private OI oi;
+  private Color pink;
+  private Color turquoise;
 
 
   public Drive(OI m_oi,DriveTrain driveTrain) {
     this.oi=m_oi;
     this.driveTrain=driveTrain;
-     requires(driveTrain);
+    pink = new Color(255, 105, 180);
+    turquoise = new Color(64, 224, 208);
+    requires(driveTrain);
     }
 
   // Called just before this Command runs the first time
@@ -33,6 +38,7 @@ public class Drive extends Command {
   protected void execute() {
     driveTrain.setMecanumDriveCommand(0.6* oi.getGamePad1().getRawAxis(0), -0.6*oi.getGamePad1().getRawAxis(1), 0.5* oi.getGamePad1().getRawAxis(4), 0);
     //System.out.println("Driving!!!");
+
   }
 
 

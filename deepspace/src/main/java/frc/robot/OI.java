@@ -12,18 +12,23 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutonOverRide;
 import frc.robot.commands.DeployBall; //LEAVE THIS, IT IS A SURPRISE TOOL THAT WILL HELP US LATER
 import frc.robot.commands.DownIngestor;
-import frc.robot.commands.GoElevator;
 import frc.robot.commands.HatchUp;
-import frc.robot.commands.HatchUpTimed;
 import frc.robot.commands.KickBall;
 import frc.robot.commands.KickBallBack;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.RunIngestor;
 import frc.robot.commands.UpIngestor;
 import frc.robot.subsystems.BallKicker;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.HatchPusher;
 import frc.robot.subsystems.Ingestor;
 import frc.robot.commands.PositionElevator;
+import frc.robot.commands.RunClimbMotor;
+import frc.robot.subsystems.UnderConsoleLights;
+import frc.robot.commands.LEDButton_Blue;
+import frc.robot.commands.LEDButton_Red;
 
 /**
  * Add your docs here.
@@ -37,8 +42,10 @@ public class OI {
   private HatchPusher hatch = new HatchPusher();
   private Ingestor ingestor =new Ingestor();
   private BallKicker ballKicker = new BallKicker();
+  private Climber climber = new Climber();
+  private UnderConsoleLights lightChange;
   public OI(){
-    
+    lightChange = new UnderConsoleLights();
     gamePad1 = new XboxController(0);
     gamePad2 = new XboxController(1);
     buttonA1 = new JoystickButton(gamePad1,1);//Run ingestor inward
@@ -69,6 +76,21 @@ public class OI {
     
 
   }
+  
+  /**
+   * @return the climber
+   */
+  public Climber getClimber() {
+    return climber;
+  }
+
+  /**
+   * @param climber the climber to set
+   */
+  public void setClimber(Climber climber) {
+    this.climber = climber;
+  }
+
   public XboxController getGamePad1() {
 		return gamePad1;
   }
@@ -123,6 +145,22 @@ public class OI {
     //buttonB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLCARGOSHIP));
     //buttonRB2.whenPressed(new PositionElevator(Robot.elevator, ElevatorPosition.BALLMIDROCKETSHIP));
     //buttonRT2.whileActive(new PositionElevator(Robot.elevator, ElevatorPosition.BALLTOPROCKETSHIP));
+    
+    /*buttonLB2.whenPressed(new MoveClimber(this, -0.85, climber));
+    buttonRB2.whenPressed(new MoveClimber(this, 0.85,climber));*/
+
+    //buttonB2.whenPressed(new MoveClimber(this, 0, climber));
+
+    /*buttonLB2.whenReleased(new MoveClimber(this, 0, climber));
+    buttonRB2.whenReleased(new MoveClimber(this, 0,climber));*/
+
+
+   // buttonB2.whenPressed(new ClimbSequence(4, 0.3, climber));
+
+   buttonLB2.whenPressed(new RunClimbMotor(climber,0.85)); //run ingestor inward
+   buttonRB2.whenPressed(new RunClimbMotor(climber,-0.85)); //run ingestor outward
+   buttonLB2.whenReleased(new RunClimbMotor(climber,0));
+   buttonRB2.whenReleased(new RunClimbMotor(climber,0));
 
     buttonBack2.whenPressed(new HatchUp(hatch, 0.25)); //deploy hatch 
     buttonStart2.whenPressed(new HatchUp(hatch, -0.25)); //shoot ball   */
@@ -135,6 +173,8 @@ public class OI {
     buttonX2.whenReleased(new MoveElevator(this, 0));//ballCargoShip
     buttonY2.whenReleased(new MoveElevator(this, 0));
 
+    buttonClickLeft1.whenPressed(new LEDButton_Red(lightChange));
+    buttonClickRight1.whenPressed(new LEDButton_Blue(lightChange));
 
     //buttonClickLeft2.whenReleased(new MoveElevator(this, 0));
     //buttonClickRight2.whenReleased(new MoveElevator(this, 0));
